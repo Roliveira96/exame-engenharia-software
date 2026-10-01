@@ -7,6 +7,8 @@ import { ProgressStore } from './ProgressStore';
 import type { OpenResult, TopicProgress } from './ProgressStore';
 import { query, queryAll, shuffle } from './html';
 import { T } from '../content/uiText';
+import { videosForTopic } from '../content/references';
+import { MenuScreen } from './MenuScreen';
 
 type StudyTab = 'lessons' | 'questions' | 'open' | 'flashcards';
 
@@ -111,7 +113,7 @@ export class TopicScreen implements Screen {
           '<label class="understood"><input type="checkbox"' + (done ? ' checked' : '') + '><span>' + T.topic.understood + '</span></label>' +
           '</footer></article>';
       })
-      .join('');
+      .join('') + this.renderVideos();
     for (const button of queryAll(container, '.cue-button')) {
       button.addEventListener('click', () => {
         this.lab?.cue(button.dataset.cue ?? '');
@@ -126,6 +128,13 @@ export class TopicScreen implements Screen {
         this.refreshProgress();
       });
     }
+  }
+
+  private renderVideos(): string {
+    const videos = videosForTopic(this.topic.id);
+    if (videos.length === 0) return '';
+    return '<section class="topic-videos reveal-item"><h3>' + T.topic.videosTitle + '</h3><p>' + T.topic.videosLead + '</p>' +
+      MenuScreen.videoList(videos) + '</section>';
   }
 
   // ----- Multiple-choice questions -----

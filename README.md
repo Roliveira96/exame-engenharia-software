@@ -16,7 +16,7 @@
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
-![Testes](https://img.shields.io/badge/testes-271%20passando-success?logo=vitest&logoColor=white)
+![Testes](https://img.shields.io/badge/testes-276%20passando-success?logo=vitest&logoColor=white)
 ![Sem frameworks](https://img.shields.io/badge/sem-frameworks-3ddc97)
 ![UTFPR](https://img.shields.io/badge/UTFPR-Campus%20Guarapuava-F6C212?logoColor=231F20)
 
@@ -40,7 +40,7 @@
 - [Estrutura do projeto](#-estrutura-do-projeto)
 - [Animações fluidas, medidas](#-animações-fluidas-medidas)
 - [Testes](#-testes)
-- [Bibliografia](#-bibliografia)
+- [Referências: livros e vídeos](#-referências-livros-e-vídeos)
 
 ---
 
@@ -98,6 +98,10 @@ Um passeio rápido pelo que o material oferece. Todas as imagens são capturas r
 
 ![Flashcards](docs/screenshots/10-flashcards.png)
 
+**12. Referências: livros e videoaulas**, na tela inicial e no fim de cada tópico.
+
+![Referências](docs/screenshots/16-references.png)
+
 ---
 
 ## 🚀 Como rodar
@@ -116,11 +120,12 @@ Abra **http://localhost:5174** (a porta é diferente da dos outros exames, para 
 | Comando | O que faz |
 |---|---|
 | `npm run dev` | Servidor de desenvolvimento, acessível também pelo IP da rede local |
-| `npm test` | Roda os 271 testes automatizados |
+| `npm test` | Roda os 276 testes automatizados |
 | `npm run perf` | Mede a fluidez de cada tela e animação (com o `npm run dev` rodando) |
 | `npm run build` | Checa os tipos com `tsc` e gera a versão final em `dist/` |
 | `npm run preview` | Serve a versão gerada em `dist/` |
 | `node scripts/capture_screenshots.js` | Regera as imagens deste README (com o `npm run dev` rodando) |
+| `node scripts/check_references.js` | Confere na internet se todos os links de livros e vídeos continuam no ar |
 
 O progresso (conceitos entendidos, questões acertadas, flashcards dominados e histórico de simulados) fica salvo no `localStorage` do navegador. O link "Zerar meu progresso", no fim da tela inicial, apaga tudo.
 
@@ -217,7 +222,8 @@ src/
 │   ├── Topic.ts                Modelo de dados de um tópico
 │   ├── introduction.ts … evolution.ts   Os 8 tópicos
 │   ├── labs/                   Dados de cada laboratório (modelos, cenários, cartas)
-│   ├── course.ts               Unidades da ementa, bibliografia, aluno e professora
+│   ├── course.ts               Unidades da ementa, aluno e professora
+│   ├── references.ts           Livros, leituras gratuitas e videoaulas
 │   └── uiText.ts               Textos da interface
 └── styles/                 ← CSS por tela
 ```
@@ -259,25 +265,128 @@ Os testes (Vitest) protegem principalmente o **conteúdo**, que é onde um erro 
 - as fórmulas de pontos por função, COCOMO e três pontos batem com os exemplos resolvidos nas questões;
 - o simulado sorteia sem repetir, distribui por tópico e aprova exatamente a partir de 6,0;
 - todo conceito tem a sua curiosidade;
-- as folhas de estilo não usam desfoque nem animam propriedades caras (ver a seção anterior).
+- as folhas de estilo não usam desfoque nem animam propriedades caras (ver a seção anterior);
+- a bibliografia oficial está completa e todo tópico tem videoaulas com link válido.
 
 ---
 
-## 📖 Bibliografia
+## 📚 Referências: livros e vídeos
 
-Conteúdo baseado na bibliografia do plano de ensino da disciplina.
+A mesma lista aparece na tela inicial do sistema, e os vídeos de cada tópico aparecem também no fim da aba Conceitos. Os títulos e canais dos vídeos foram conferidos no YouTube; `node scripts/check_references.js` repete a conferência.
 
-**Básica**
-- WAZLAWICK, Raul Sidnei. *Análise e projeto de sistemas de informação orientados a objetos*. 2. ed. Elsevier, 2011.
-- PRESSMAN, Roger S. *Engenharia de software*. Makron, 1995.
-- SOMMERVILLE, Ian. *Engenharia de software*. 8. ed. Pearson Addison-Wesley, 2007.
+### Livros e leituras
 
-**Complementar**
-- COHN, Mike. *Desenvolvimento de software com Scrum*. Bookman, 2011.
-- LARMAN, Craig. *Utilizando UML e padrões*. 3. ed. Bookman, 2007.
-- BEZERRA, Eduardo. *Princípios de análise e projeto de sistemas com UML*. 2. ed. Elsevier, 2007.
-- FOWLER, Martin. *UML essencial*. 3. ed. Bookman, 2005.
-- TELES, Vinícius Manhães. *Extreme Programming*. Novatec, 2004.
+**Bibliografia básica do plano de ensino.** Os três livros indicados pela disciplina. A prova sai daqui.
+
+- WAZLAWICK, Raul Sidnei. *Análise e projeto de sistemas de informação orientados a objetos*. 2. ed. Rio de Janeiro: Elsevier, 2011. Casos de uso e Processo Unificado, passo a passo.
+- PRESSMAN, Roger S. *Engenharia de software*. São Paulo: Makron, 1995. Camadas, mitos, métricas, pontos por função, testes e manutenção.
+- SOMMERVILLE, Ian. *Engenharia de software*. 8. ed. São Paulo: Pearson Addison-Wesley, 2007. Processos, requisitos, V&V e evolução de software.
+
+**Bibliografia complementar do plano de ensino.** Indicados pela disciplina para aprofundar Scrum, XP e UML.
+
+- COHN, Mike. *Desenvolvimento de software com Scrum: aplicando métodos ágeis com sucesso*. Porto Alegre: Bookman, 2011.
+- LARMAN, Craig. *Utilizando UML e padrões: uma introdução à análise e ao projeto orientados a objetos e ao desenvolvimento iterativo*. 3. ed. Porto Alegre: Bookman, 2007.
+- BEZERRA, Eduardo. *Princípios de análise e projeto de sistemas com UML*. 2. ed. Rio de Janeiro: Elsevier, 2007.
+- FOWLER, Martin. *UML essencial: um breve guia para a linguagem-padrão de modelagem de objetos*. 3. ed. Porto Alegre: Bookman, 2005.
+- TELES, Vinícius Manhães. *Extreme Programming: aprenda como encantar seus usuários desenvolvendo software com agilidade e alta qualidade*. São Paulo: Novatec, 2004.
+
+**Edições atuais e outros livros-texto.** Os mesmos autores em edições mais novas, e alternativas em português.
+
+- PRESSMAN, Roger S.; MAXIM, Bruce R. *Engenharia de software: uma abordagem profissional*. 8. ed. Porto Alegre: AMGH, 2016. A versão atual do Pressman, com capítulos de métodos ágeis e engenharia web.
+- SOMMERVILLE, Ian. *Engenharia de software*. 10. ed. São Paulo: Pearson, 2018. Edição atual, com mais espaço para desenvolvimento ágil.
+- VALENTE, Marco Tulio. *Engenharia de software moderna: princípios e práticas para desenvolvimento de software com produtividade*. 2020. Livro brasileiro, direto e atual. O texto completo é gratuito no site do autor. [ler on-line](https://engsoftmoderna.info/)
+- WAZLAWICK, Raul Sidnei. *Engenharia de software: conceitos e práticas*. Rio de Janeiro: Elsevier, 2013. Visão geral da área pelo mesmo autor da bibliografia básica.
+- PFLEEGER, Shari Lawrence. *Engenharia de software: teoria e prática*. 2. ed. São Paulo: Prentice Hall, 2004. Bom em modelos de processo, medição e testes.
+
+**Para ir além, por assunto.** Clássicos e livros especializados para quem quiser se aprofundar em um tópico.
+
+- BROOKS, Frederick P. *O mítico homem-mês: ensaios sobre engenharia de software*. Rio de Janeiro: Elsevier, 2009. Introdução. A origem da Lei de Brooks e do ensaio "Não existe bala de prata".
+- BECK, Kent. *Programação extrema (XP) explicada: acolha as mudanças*. Porto Alegre: Bookman, 2004. Ágeis. O XP contado pelo criador.
+- SUTHERLAND, Jeff. *Scrum: a arte de fazer o dobro do trabalho na metade do tempo*. São Paulo: LeYa, 2014. Ágeis. A história e as ideias do Scrum, por um dos criadores.
+- ANDERSON, David J. *Kanban: mudança evolucionária de sucesso para seu negócio de tecnologia*. Blue Hole Press, 2011. Ágeis. O livro de referência do método Kanban.
+- GUEDES, Gilleanes T. A. *UML 2: uma abordagem prática*. São Paulo: Novatec. Requisitos. Diagramas de casos de uso com muitos exemplos.
+- VAZQUEZ, Carlos Eduardo; SIMÕES, Guilherme Siqueira; ALBERT, Renato Machado. *Análise de pontos de função: medição, estimativas e gerenciamento de projetos de software*. São Paulo: Érica. Estimativas. A referência brasileira em pontos de função.
+- COHN, Mike. *Agile estimating and planning*. Upper Saddle River: Prentice Hall, 2005. Estimativas. Story points, velocidade e Planning Poker (em inglês).
+- KOSCIANSKI, André; SOARES, Michel dos Santos. *Qualidade de software*. 2. ed. São Paulo: Novatec, 2007. Qualidade. Normas ISO, CMMI e MPS.BR explicados em português.
+- DELAMARO, Márcio Eduardo; MALDONADO, José Carlos; JINO, Mario. *Introdução ao teste de software*. 2. ed. Rio de Janeiro: Elsevier, 2016. Testes. Técnicas funcionais e estruturais, por pesquisadores brasileiros.
+- MYERS, Glenford J. *The art of software testing*. 3. ed. Hoboken: Wiley, 2011. Testes. O clássico de onde vêm as definições de "teste bem-sucedido" (em inglês).
+- FOWLER, Martin. *Refatoração: aperfeiçoando o design de códigos existentes*. 2. ed. São Paulo: Novatec, 2020. Manutenção. Como melhorar código sem mudar o comportamento.
+- MARTIN, Robert C. *Código limpo: habilidades práticas do Agile software*. Rio de Janeiro: Alta Books, 2009. Manutenção. Código que outras pessoas conseguem manter.
+- HUNT, Andrew; THOMAS, David. *O programador pragmático: de aprendiz a mestre*. Porto Alegre: Bookman, 2010. Prática profissional. De onde vem o "pato de borracha".
+
+**Leitura gratuita on-line.** Documentos oficiais e livros com texto integral aberto.
+
+- *Engenharia de Software Moderna*, de Marco Tulio Valente: livro completo em HTML. [ler on-line](https://engsoftmoderna.info/)
+- *Manifesto para o Desenvolvimento Ágil de Software*, em português. [ler on-line](https://agilemanifesto.org/iso/ptbr/manifesto.html)
+- *Os doze princípios do software ágil*, em português. [ler on-line](https://agilemanifesto.org/iso/ptbr/principles.html)
+- *Guia do Scrum* (2020), de Schwaber e Sutherland, em português. [ler on-line](https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-PortugueseBR-3.0.pdf)
+- *SWEBOK*: o guia do corpo de conhecimento em engenharia de software, da IEEE (em inglês). [ler on-line](https://www.computer.org/education/bodies-of-knowledge/software-engineering)
+- *MPS.BR*: página do programa na SOFTEX, com os guias do modelo. [ler on-line](https://softex.br/mpsbr/)
+
+### Videoaulas
+
+**Cursos completos**
+
+- [Engenharia de Software (playlist do curso)](https://www.youtube.com/playlist?list=PLxI8Can9yAHfeoA_yMm9iKJVxQprljmL9) · UNIVESP. A disciplina completa da universidade virtual pública de São Paulo.
+- [Engenharia de Software do ZERO: Curso Completo em Vídeo](https://www.youtube.com/watch?v=JbgKl9eIQgY) · Crescencio Lima (IFBA). A disciplina inteira em um único vídeo de mais de 7 horas.
+- [Curso Completo de Engenharia de Software (playlist)](https://www.youtube.com/playlist?list=PLcilqwq_HuxUH4-Xttqm9ht_JLtAxnzQs) · Crescencio Lima (IFBA). O mesmo curso, dividido por aula.
+- [Engenharia de Software Moderna, com Marco Tulio Valente (UFMG)](https://www.youtube.com/watch?v=ZM77VScNNPc) · Fronteiras da Engenharia de Software. Conversa com o autor do livro gratuito indicado acima.
+
+**Introdução à Engenharia de Software**
+
+- [Breve Introdução à Engenharia de Software](https://www.youtube.com/watch?v=6ydOpqdLuKo) · Marco Tulio Valente. Introdução curta, pelo professor da UFMG autor do livro gratuito.
+- [Engenharia de Software - Apresentação](https://www.youtube.com/watch?v=ciQ2FObc3tc) · UNIVESP. Abertura do curso da UNIVESP.
+- [Introdução a Engenharia de Software](https://www.youtube.com/watch?v=M3dK0otBOUY) · Estudo Na Web. Aula de abertura de um curso de UML.
+
+**Modelos de ciclo de vida**
+
+- [Aula 01 - Modelos de processo de software e atividades de software](https://www.youtube.com/watch?v=kO1PSkzTsYc) · UNIVESP. Modelos de processo e atividades do processo de software.
+- [Modelo em Cascata - Ciclos de Vida de Desenvolvimento de Software](https://www.youtube.com/watch?v=luCQslwi8pE) · Bóson Treinamentos. O modelo cascata em detalhe.
+- [Engenharia de Software - Modelo em Espiral de Boehm](https://www.youtube.com/watch?v=GCrxnZZCcYU) · Tu quer saber mais?. O modelo dirigido a riscos.
+- [Processos de software: entregas incrementais, modelo espiral, RUP](https://www.youtube.com/watch?v=ynoPogjoqIk) · Mazer Dv - Ademir Mazer Junior. Incremental, espiral e Processo Unificado na mesma aula.
+- [#03 - Processos e Modelos de Processo de Software](https://www.youtube.com/watch?v=WYmWKUcBjyk) · Professor Claudio Sanavria. Panorama dos modelos de processo.
+
+**Metodologias ágeis**
+
+- [Scrum - Aprenda Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0) · MindMaster. Visão geral rápida do Scrum.
+- [Por que utilizar Metodologias Ágeis? - SCRUM, KANBAN e LEAN](https://www.youtube.com/watch?v=LIhKbUHqrbU) · Conecta Nuvem. Scrum, Kanban e Lean no mesmo vídeo.
+- [Metodologia Agile Extreme Programming XP](https://www.youtube.com/watch?v=S7iH9fR8Xss) · Informatica Live. Apresentação do Extreme Programming.
+- [WIP - Porque faz sentido! - Kanban](https://www.youtube.com/watch?v=CmrIvDD4w9M) · Mundo Compartilhado. Por que limitar o trabalho em andamento.
+
+**Requisitos e técnicas de levantamento**
+
+- [Aula 07 - Elicitação e análise de requisitos](https://www.youtube.com/watch?v=ME0LrcqbeO0) · UNIVESP. Aula da UNIVESP sobre elicitação e análise.
+- [Aula 08 - Validação e gerenciamento de requisitos](https://www.youtube.com/watch?v=WOyF1_dEiTA) · UNIVESP. Aula da UNIVESP sobre validação e gerenciamento.
+- [Include e Extend em Diagramas de Casos de Uso](https://www.youtube.com/watch?v=LGkzco2pfyc) · Dawntech. As duas relações que mais confundem em casos de uso.
+
+**Estimativas, métricas e viabilidade**
+
+- [Análise de pontos de função](https://www.youtube.com/watch?v=5ksTvRLupN4) · Assuntos sobre tecnologia para concursos públicos. De um canal voltado a concursos de TI.
+- [Webinar - Análise de Pontos de Função: Medição e Estimativa de Software](https://www.youtube.com/watch?v=seq9uKQE65k) · Fatto Consultoria e Sistemas. Por uma consultoria especializada em pontos de função.
+- [O que é e como usar o Planning Poker nas suas estimativas](https://www.youtube.com/watch?v=p387JzsOERY) · A Mente do Gestor, by André Gomes. Estimativa ágil em equipe.
+
+**Qualidade e produto de software**
+
+- [Gerência e Qualidade de Software - Aula 01 - Visão Geral](https://www.youtube.com/watch?v=XiG_Gz-sv48) · UNIVESP. Abertura da disciplina de qualidade da UNIVESP.
+- [Qualidade do Produto de Software - ISO/IEC 9126](https://www.youtube.com/watch?v=MImOsStO2ks) · Patrick Brito. As seis características da norma.
+- [ISO 25010: Modelos e Atributos da Qualidade de Software](https://www.youtube.com/watch?v=BlN8D7ZvpW8) · Crescencio Lima (IFBA). A norma que substituiu a 9126.
+- [Comparativo do CMMI versus o MPS.BR - Resumo das principais diferenças!](https://www.youtube.com/watch?v=AZXFeJ92JvI) · Thiago Jabur. Os dois modelos de maturidade, comparados.
+- [67 - Introdução ao MPS.br](https://www.youtube.com/watch?v=PftStdT0q6M) · Eduardo Engenharia de Software. O modelo brasileiro e os seus níveis.
+
+**Testes, V&V e revisão de software**
+
+- [Teste de Software: O que são Técnicas de teste · CTFL](https://www.youtube.com/watch?v=qnORPaQeYt0) · Mauro de Boni. O que são técnicas de teste, na linha da certificação CTFL.
+- [Testes de Software: Conheça a Técnica Tabela de Decisão · CTFL](https://www.youtube.com/watch?v=4sHZnmrsczY) · Mauro de Boni. A tabela de decisão, uma técnica caixa-preta.
+- [Teste de Software: Técnica de Teste de Caixa Branca](https://www.youtube.com/watch?v=UtN4BGK82Ew) · programando. Testes derivados da estrutura do código.
+- [Testes de Caixa Branca e Preta em Minutos: Simples e Direto!](https://www.youtube.com/watch?v=3TNm-aP45No) · Robertinha QA. Revisão rápida das duas abordagens.
+
+**Implantação, manutenção e engenharia web**
+
+- [Manutenção de software](https://www.youtube.com/watch?v=QJaAj-OOnOg) · Fabiane Benitti. Os tipos de manutenção: corretiva, adaptativa, evolutiva e preventiva.
+- [45 - Dinâmica da Evolução (Leis de Lehman)](https://www.youtube.com/watch?v=8jdwswEl-E4) · Eduardo Engenharia de Software. As leis da evolução de software.
+- [Como funciona a deterioração de software? - Leis de Lehman](https://www.youtube.com/watch?v=GJuZqN8lZ9M) · Code By Duda. Por que o software "envelhece".
+- [O que é um sistema legado?](https://www.youtube.com/watch?v=lDhKzlWMurE) · ManageEngine Brasil. Definição e exemplos de sistemas legados.
+- [Canary e Blue-Green explicados: como fazer deploy sem derrubar o serviço](https://www.youtube.com/watch?v=Du7H-2Oxm9g) · Bits Conceituais. As estratégias de implantação usadas hoje em aplicações web.
 
 ---
 

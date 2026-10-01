@@ -116,6 +116,11 @@ const SHOTS = [
     settle: 3600,
   },
   {
+    file: '16-references.png',
+    hash: '',
+    setup: () => document.querySelector('.references').scrollIntoView({ block: 'start' }),
+  },
+  {
     file: '15-boundary-values.png',
     hash: '#/testing',
     setup: () => {

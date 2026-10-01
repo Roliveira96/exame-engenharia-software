@@ -275,3 +275,8 @@
   .study-scroll { min-width: 0; }
   .study { min-width: 0; }
 }
+
+/* ----- Videos of the topic ----- */
+.topic-videos { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px 14px 10px; }
+.topic-videos h3 { margin: 0 8px 4px; font-size: 17px; color: var(--topic-color); }
+.topic-videos p { margin: 0 8px 4px; font-size: 13.5px; color: var(--text-soft); }

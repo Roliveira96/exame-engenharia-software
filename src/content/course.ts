@@ -50,18 +50,3 @@ export const units: Array<{ number: number; syllabus: string; detail: string }> 
     detail: 'Aplicações web. Processo de manutenção e implantação. Fundamentos e tipos de testes. Verificação e Validação.',
   },
 ];
-
-export const bibliography: { basic: string[]; extra: string[] } = {
-  basic: [
-    'WAZLAWICK, Raul Sidnei. <i>Análise e projeto de sistemas de informação orientados a objetos</i>. 2. ed. Elsevier, 2011.',
-    'PRESSMAN, Roger S. <i>Engenharia de software</i>. Makron, 1995.',
-    'SOMMERVILLE, Ian. <i>Engenharia de software</i>. 8. ed. Pearson Addison-Wesley, 2007.',
-  ],
-  extra: [
-    'COHN, Mike. <i>Desenvolvimento de software com Scrum: aplicando métodos ágeis com sucesso</i>. Bookman, 2011.',
-    'LARMAN, Craig. <i>Utilizando UML e padrões</i>. 3. ed. Bookman, 2007.',
-    'BEZERRA, Eduardo. <i>Princípios de análise e projeto de sistemas com UML</i>. 2. ed. Elsevier, 2007.',
-    'FOWLER, Martin. <i>UML essencial</i>. 3. ed. Bookman, 2005.',
-    'TELES, Vinícius Manhães. <i>Extreme Programming</i>. Novatec, 2004.',
-  ],
-};

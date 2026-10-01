@@ -9,7 +9,9 @@ import type { ExamRecord, TopicProgress } from './ProgressStore';
 import { Toast } from './Toast';
 import { formatNumber, query } from './html';
 import { T } from '../content/uiText';
-import { author, bibliography, professor, units } from '../content/course';
+import { author, professor, units } from '../content/course';
+import { bookGroups, videoGroups } from '../content/references';
+import type { BookGroup, BookReference, VideoGroup, VideoReference } from '../content/references';
 
 const RING_RADIUS: number = 17;
 const RING_LENGTH: number = 2 * Math.PI * RING_RADIUS;
@@ -39,7 +41,6 @@ export class MenuScreen implements Screen {
       })
       .join('');
     const how: string = T.menu.how.map((text: string, index: number) => '<div><b>' + (index + 1) + '</b><span>' + text + '</span></div>').join('');
-    const books = (items: string[]): string => items.map((item: string) => '<li>' + item + '</li>').join('');
 
     root.innerHTML =
       '<div class="menu">' +
@@ -60,6 +61,7 @@ export class MenuScreen implements Screen {
       '      <a class="primary-button" href="#/exam">' + T.menu.examButton + '</a>' +
       '      <a class="secondary-button" href="#/flashcards">' + T.menu.flashcardsButton + '</a>' +
       '      <button class="secondary-button" data-action="cheat">' + T.menu.cheatButton + '</button>' +
+      '      <a class="secondary-button" href="#/references" data-action="references">' + T.menu.referencesButton + '</a>' +
       '    </div>' +
       '    <div class="overall-progress"><div class="overall-labels"><span>' + T.menu.overallLabel + '</span>' +
       '      <b>' + T.menu.overall(overall.done, overall.total) + '</b></div>' +
@@ -76,15 +78,18 @@ export class MenuScreen implements Screen {
       '      <p class="professor-subject">' + professor.subject + '</p>' +
       '      <p class="professor-note">' + professor.note + '</p></div></section>' +
       '  </div>' +
-      '  <details class="bibliography"><summary>' + T.menu.bibliographyTitle + '</summary>' +
-      '    <h4>' + T.menu.bibliographyBasic + '</h4><ul>' + books(bibliography.basic) + '</ul>' +
-      '    <h4>' + T.menu.bibliographyExtra + '</h4><ul>' + books(bibliography.extra) + '</ul></details>' +
+      this.references() +
       '  <button class="link-button" data-action="reset">' + T.menu.reset + '</button>' +
       '</div>';
 
     this.modal = new Modal(T.common.close);
     query(root, '[data-action="cheat"]').addEventListener('click', () => {
       this.modal?.open(T.menu.cheatTitle, CheatSheet.html(topics));
+    });
+    query(root, '[data-action="references"]').addEventListener('click', (event: Event) => {
+      // Stays on the menu: the link only scrolls to the references section.
+      event.preventDefault();
+      query(root, '.references').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
     query(root, '[data-action="reset"]').addEventListener('click', () => {
       if (!window.confirm(T.menu.resetConfirm)) return;
@@ -113,6 +118,36 @@ export class MenuScreen implements Screen {
       '<div class="card-footer"><span class="card-ring">' + this.ring(progress.ratio) + '<small>' +
       T.menu.cardCounts(topic.lessons.length, topic.questions.length + topic.openQuestions.length) + '</small></span>' +
       '<span class="card-open">' + T.menu.study + '</span></div></a>';
+  }
+
+  /** Books and videos, grouped; the groups of the official course plan start open. */
+  private references(): string {
+    const books: string = bookGroups
+      .map((group: BookGroup, index: number) =>
+        '<details class="reference-group"' + (index < 2 ? ' open' : '') + '><summary><b>' + group.title + '</b><small>' + T.menu.bookCount(group.books.length) + '</small></summary>' +
+        '<p class="reference-description">' + group.description + '</p><ul class="book-list">' +
+        group.books.map((book: BookReference) =>
+          '<li><span>' + book.citation + '</span>' +
+          (book.note === undefined ? '' : '<small>' + book.note + '</small>') +
+          (book.url === undefined ? '' : '<a class="reference-link" href="' + book.url + '" target="_blank" rel="noopener">' + T.menu.readOnline + '</a>') + '</li>').join('') +
+        '</ul></details>')
+      .join('');
+    const videos: string = videoGroups
+      .map((group: VideoGroup, index: number) =>
+        '<details class="reference-group"' + (index === 0 ? ' open' : '') + '><summary><b>' + group.title + '</b><small>' + T.menu.videoCount(group.videos.length) + '</small></summary>' +
+        MenuScreen.videoList(group.videos) + '</details>')
+      .join('');
+    return '<section class="references"><header><h2>' + T.menu.referencesTitle + '</h2><p>' + T.menu.referencesLead + '</p></header>' +
+      '<div class="references-columns"><div><h3>' + T.menu.booksTitle + '</h3>' + books + '</div>' +
+      '<div><h3>' + T.menu.videosTitle + '</h3>' + videos + '</div></div></section>';
+  }
+
+  public static videoList(videos: VideoReference[]): string {
+    return '<ul class="video-list">' + videos
+      .map((video: VideoReference) =>
+        '<li><a href="' + video.url + '" target="_blank" rel="noopener"><span class="video-play" aria-hidden="true">▶</span>' +
+        '<span class="video-text"><b>' + video.title + '</b><small>' + video.channel + ' · ' + video.note + '</small></span></a></li>')
+      .join('') + '</ul>';
   }
 
   private ring(ratio: number): string {
