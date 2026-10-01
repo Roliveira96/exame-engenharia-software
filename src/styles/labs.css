@@ -315,3 +315,152 @@
 }
 
 .edge-label { paint-order: stroke; stroke: #0c0e14; stroke-width: 5px; stroke-linejoin: round; }
+
+/* ===== Calculators ===== */
+.chips-label { align-self: center; font-size: 12px; color: var(--text-soft); }
+
+.calc-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 12px; }
+.calc-table th { text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-soft); padding: 4px 6px; }
+.calc-table td { padding: 6px; border-top: 1px solid var(--border); vertical-align: middle; }
+.calc-table td:first-child b { display: block; font-size: 13px; }
+.calc-table td:first-child small { color: var(--text-soft); font-size: 11.5px; }
+.fp-weight { font-family: var(--font-code); color: var(--text-soft); white-space: nowrap; }
+.fp-subtotal, .fp-total { font-family: var(--font-code); font-weight: 600; text-align: right; }
+.calc-total td { font-weight: 700; color: var(--topic-color); }
+
+.calc-input {
+  width: 62px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--font-code);
+  font-size: 13px;
+}
+
+.calc-input:focus { outline: none; border-color: var(--topic-color); }
+
+.segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.segmented button { border: none; background: var(--surface-2); padding: 5px 8px; font-size: 11.5px; font-weight: 600; color: var(--text-soft); cursor: pointer; transition: background 0.2s, color 0.2s; }
+.segmented button + button { border-left: 1px solid var(--border); }
+.segmented button.active { background: var(--topic-color); color: var(--accent-ink); }
+
+.calc-slider { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; font-size: 13.5px; color: var(--text-mid); }
+.calc-slider span b { font-family: var(--font-code); color: var(--topic-color); }
+.calc-slider small { color: var(--text-soft); font-size: 12px; }
+.calc-slider input[type='range'] { width: 100%; accent-color: var(--topic-color); }
+.field-optimistic input { accent-color: var(--green); }
+.field-pessimistic input { accent-color: var(--red); }
+
+.calc-formula {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #0c0e14;
+  border: 1px solid var(--border);
+  font-family: var(--font-code);
+  font-size: 13px;
+  color: var(--text-mid);
+  margin-bottom: 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+  line-height: 1.8;
+}
+
+.calc-formula b { color: var(--topic-color); }
+
+.stat-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; }
+.stat-tiles.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stat-tile { padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); display: flex; flex-direction: column; gap: 2px; }
+.stat-tile small { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-soft); }
+.stat-tile b { font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.stat-tile.highlight { border-color: color-mix(in srgb, var(--topic-color) 60%, transparent); background: color-mix(in srgb, var(--topic-color) 10%, var(--surface)); }
+.stat-tile.highlight b { color: var(--topic-color); }
+
+.calc-inline { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13.5px; color: var(--text-mid); }
+.calc-inline b { color: var(--text); }
+.calc-subtitle { margin: 4px 0 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-soft); }
+.calc-note { margin: 12px 0 0; font-size: 13px; color: var(--text-soft); }
+.calc-note b { color: var(--text-mid); }
+.calc-warning { margin: 0 0 12px; padding: 8px 12px; border-radius: 10px; font-size: 13px; color: var(--orange); border: 1px solid color-mix(in srgb, var(--orange) 45%, transparent); background: color-mix(in srgb, var(--orange) 9%, transparent); }
+
+.mode-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
+.mode-option { text-align: left; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; display: flex; flex-direction: column; gap: 3px; transition: border-color 0.2s, background 0.2s, transform 0.15s; }
+.mode-option b { font-size: 13.5px; }
+.mode-option small { font-size: 11.5px; color: var(--text-soft); line-height: 1.35; }
+.mode-option:hover { transform: translateY(-2px); }
+.mode-option.active { border-color: var(--topic-color); background: color-mix(in srgb, var(--topic-color) 13%, var(--surface)); }
+.mode-option.active b { color: var(--topic-color); }
+
+.compare-bars { display: flex; flex-direction: column; gap: 7px; }
+.compare-row { display: grid; grid-template-columns: 110px 1fr 52px; align-items: center; gap: 10px; font-size: 12.5px; color: var(--text-soft); }
+.compare-track { height: 12px; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
+.compare-track i { display: block; height: 100%; border-radius: inherit; background: var(--text-soft); transition: width 0.5s var(--ease), background 0.3s; }
+.compare-row b { font-family: var(--font-code); text-align: right; }
+.compare-row.active { color: var(--text); }
+.compare-row.active i { background: var(--topic-color); }
+
+.three-point-chart { margin-bottom: 12px; }
+.three-point-chart text { fill: var(--text-mid); font-size: 12px; font-family: var(--font-code); }
+.distribution { fill: color-mix(in srgb, var(--topic-color) 22%, transparent); stroke: var(--topic-color); stroke-width: 2; transition: d 0.3s; }
+.chart-marker line { stroke-width: 1.5; stroke-dasharray: 3 4; stroke: var(--text-soft); }
+.chart-marker.optimistic text { fill: var(--green); }
+.chart-marker.pessimistic text { fill: var(--red); }
+.chart-marker.expected line { stroke: var(--yellow); stroke-dasharray: none; stroke-width: 2.5; }
+.chart-marker.expected text { fill: var(--yellow); font-weight: 700; }
+
+/* ===== Planning poker ===== */
+.poker-story { padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); margin-bottom: 14px; }
+.poker-story small { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--topic-color); font-weight: 700; }
+.poker-story b { display: block; font-size: 15px; margin: 2px 0; }
+.poker-story p { margin: 0; font-size: 13px; color: var(--text-soft); }
+
+.poker-table {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 20px 12px 14px;
+  border-radius: 90px / 60px;
+  border: 2px solid #1f5a41;
+  background: radial-gradient(ellipse at center, #17503a, #0e3325);
+  margin-bottom: 14px;
+}
+
+.poker-seat { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.poker-seat small { font-size: 11.5px; color: #cfe9dc; font-weight: 600; }
+.poker-seat.you small { color: var(--yellow); }
+
+.poker-card { position: relative; width: 52px; height: 74px; transform-style: preserve-3d; transition: transform 0.6s var(--ease); transition-delay: calc(var(--i) * 0.09s); }
+.poker-card.face-up { transform: rotateY(180deg); }
+.poker-card.empty { opacity: 0.35; }
+.poker-back, .poker-front { position: absolute; inset: 0; display: grid; place-items: center; border-radius: 9px; backface-visibility: hidden; font-weight: 800; font-size: 22px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4); }
+.poker-back { background: repeating-linear-gradient(45deg, #36418f, #36418f 6px, #2b3577 6px, #2b3577 12px); border: 2px solid #fff; color: #fff; }
+.poker-front { background: #fff; color: #171c3a; transform: rotateY(180deg); border: 2px solid #171c3a; }
+.poker-seat.you .poker-front { background: var(--yellow); }
+
+.poker-footer { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.poker-footer .diagram-caption { width: 100%; min-height: 0; }
+.poker-prompt { margin: 0; font-size: 13.5px; color: var(--text-mid); }
+.poker-deck { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+
+.poker-pick {
+  width: 44px;
+  height: 60px;
+  border-radius: 9px;
+  border: 2px solid var(--border);
+  background: var(--surface-2);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--topic-color);
+  cursor: pointer;
+  transition: transform 0.18s var(--ease), border-color 0.2s, background 0.2s;
+}
+
+.poker-pick:hover { transform: translateY(-6px); border-color: var(--topic-color); }
+.poker-pick.active { transform: translateY(-8px); background: var(--topic-color); border-color: var(--topic-color); color: var(--accent-ink); }
+
+@media (max-width: 560px) {
+  .mode-options, .stat-tiles.three { grid-template-columns: minmax(0, 1fr); }
+  .calc-table .segmented { flex-direction: column; }
+}

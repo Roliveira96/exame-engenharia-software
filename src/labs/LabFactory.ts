@@ -7,6 +7,11 @@ import * as introductionData from '../content/labs/introductionLab';
 import * as lifecyclesData from '../content/labs/lifecyclesLab';
 import * as agileData from '../content/labs/agileLab';
 import * as requirementsData from '../content/labs/requirementsLab';
+import * as estimationData from '../content/labs/estimationLab';
+import { FunctionPointPanel } from './estimation/FunctionPointPanel';
+import { CocomoPanel } from './estimation/CocomoPanel';
+import { ThreePointPanel } from './estimation/ThreePointPanel';
+import { PokerPanel } from './estimation/PokerPanel';
 import { SprintPanel } from './SprintPanel';
 
 /** Builds the interactive lab that goes with each topic. */
@@ -40,6 +45,14 @@ export class LabFactory {
           new ClassifierGame(requirementsData.nfrGame, game),
           new ClassifierGame(requirementsData.techniquesGame, game),
           new DiagramPlayer(requirementsData.requirementsDiagram, steps),
+        ]);
+      case 'estimation':
+        return new Lab(estimationData.estimationLabTitle, [
+          new FunctionPointPanel(estimationData.functionPointCalculator),
+          new CocomoPanel(estimationData.cocomoCalculator),
+          new ThreePointPanel(estimationData.threePointCalculator),
+          new PokerPanel(estimationData.planningPoker),
+          new ClassifierGame(estimationData.feasibilityGame, game),
         ]);
       default:
         return null;

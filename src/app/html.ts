@@ -44,3 +44,22 @@ export function formatClock(totalSeconds: number): string {
 export function formatNumber(value: number, decimals: number = 1): string {
   return value.toFixed(decimals).replace('.', ',');
 }
+
+/** Counts a displayed number up or down to its new value. */
+export function animateNumber(element: HTMLElement, target: number, decimals: number = 1, durationMs: number = 450): void {
+  const from: number = Number(element.dataset.value ?? '0');
+  element.dataset.value = String(target);
+  if (prefersReducedMotion() || from === target) {
+    element.textContent = formatNumber(target, decimals);
+    return;
+  }
+  const start: number = performance.now();
+  const frame = (now: number): void => {
+    const progress: number = Math.min(1, (now - start) / durationMs);
+    const eased: number = 1 - Math.pow(1 - progress, 3);
+    element.textContent = formatNumber(from + (target - from) * eased, decimals);
+    // A newer animation took over when the stored target changed.
+    if (progress < 1 && element.dataset.value === String(target)) window.requestAnimationFrame(frame);
+  };
+  window.requestAnimationFrame(frame);
+}
