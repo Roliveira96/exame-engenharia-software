@@ -28,6 +28,11 @@ export function queryAll<T extends Element = HTMLElement>(root: ParentNode, sele
   return Array.from(root.querySelectorAll<T>(selector));
 }
 
+/** Writes text only when it changed, so unchanged cells do not trigger layout and repaint. */
+export function setText(element: HTMLElement, text: string): void {
+  if (element.textContent !== text) element.textContent = text;
+}
+
 export function prefersReducedMotion(): boolean {
   return typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
@@ -49,7 +54,7 @@ export function formatNumber(value: number, decimals: number = 1): string {
 export function animateNumber(element: HTMLElement, target: number, decimals: number = 1, durationMs: number = 450): void {
   const from: number = Number(element.dataset.value ?? '0');
   element.dataset.value = String(target);
-  if (prefersReducedMotion() || from === target) {
+  if (prefersReducedMotion() || from === target || durationMs <= 0) {
     element.textContent = formatNumber(target, decimals);
     return;
   }

@@ -228,7 +228,7 @@ export class ExamScreen implements Screen {
     const clock: HTMLElement = query(this.root, '.exam-clock');
     query(clock, 'b').textContent = formatClock(this.secondsLeft);
     clock.classList.toggle('low', this.secondsLeft <= LOW_TIME_SECONDS);
-    query(this.root, '.exam-time-track i').style.width = (this.secondsLeft / this.secondsTotal) * 100 + '%';
+    query(this.root, '.exam-time-track i').style.transform = 'scaleX(' + this.secondsLeft / this.secondsTotal + ')';
   }
 
   private askToFinish(): void {

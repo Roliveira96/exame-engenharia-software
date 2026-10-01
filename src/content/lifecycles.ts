@@ -13,6 +13,7 @@ export const lifecycles: Topic = {
   lessons: [
     {
       id: 'life-concept',
+      funFact: `A expressão "<b>release early, release often</b>" (libere cedo, libere com frequência) ficou famosa com o desenvolvimento do <b>Linux</b>, descrito por Eric Raymond em <i>A Catedral e o Bazar</i>.`,
       icon: '🗺️',
       title: 'O que é um modelo de ciclo de vida',
       body: `
@@ -30,6 +31,7 @@ export const lifecycles: Topic = {
     },
     {
       id: 'life-waterfall',
+      funFact: `Ironia histórica: o artigo de <b>Royce (1970)</b> nunca usa a palavra "cascata" e, logo depois de mostrar o diagrama sequencial, avisa que aquela forma de trabalhar "<b>é arriscada e convida ao fracasso</b>". O modelo ficou famoso justamente pela versão que ele criticava.`,
       icon: '🌊',
       title: 'Modelo cascata (ciclo de vida clássico)',
       body: `
@@ -50,6 +52,7 @@ export const lifecycles: Topic = {
     },
     {
       id: 'life-prototype',
+      funFact: `Antes de existir o <b>Palm Pilot</b>, seu criador, Jeff Hawkins, andava com um <b>bloquinho de madeira</b> no bolso da camisa e fingia usá-lo nas reuniões, para descobrir quais funções realmente fariam falta. Protótipo descartável de verdade.`,
       icon: '🧪',
       title: 'Prototipação',
       body: `
@@ -66,6 +69,7 @@ export const lifecycles: Topic = {
     },
     {
       id: 'life-incremental',
+      funFact: `O <b>Gmail</b> ficou com o selo "beta" por <b>mais de cinco anos</b>, recebendo funções novas aos poucos enquanto milhões de pessoas já o usavam. Entrega incremental na veia.`,
       icon: '🧩',
       title: 'Desenvolvimento evolucionário e entrega incremental',
       body: `
@@ -83,6 +87,7 @@ export const lifecycles: Topic = {
     },
     {
       id: 'life-spiral',
+      funFact: `Boehm criou o espiral enquanto trabalhava na <b>TRW</b>, empresa que fazia software para foguetes e satélites: um lugar onde ignorar um risco técnico podia custar, literalmente, uma missão espacial.`,
       icon: '🌀',
       title: 'Modelo espiral',
       body: `
@@ -100,6 +105,7 @@ export const lifecycles: Topic = {
     },
     {
       id: 'life-v',
+      funFact: `O V não é só um desenho didático: o <b>V-Modell</b> é o padrão oficial de desenvolvimento de sistemas do governo da <b>Alemanha</b>, exigido em projetos públicos e de defesa.`,
       icon: '✅',
       title: 'Modelo V',
       body: `
@@ -117,6 +123,7 @@ export const lifecycles: Topic = {
     },
     {
       id: 'life-rup',
+      funFact: `O RUP veio da <b>Rational</b>, a empresa dos "três amigos" da UML (Booch, Rumbaugh e Jacobson). Em 2003, a <b>IBM comprou a Rational por US$ 2,1 bilhões</b>.`,
       icon: '🏛️',
       title: 'Processo Unificado (RUP)',
       body: `
@@ -136,6 +143,7 @@ export const lifecycles: Topic = {
     },
     {
       id: 'life-choose',
+      funFact: `Em 1996, o foguete <b>Ariane 5</b> explodiu cerca de 40 segundos depois de decolar. A causa: um componente <b>reutilizado do Ariane 4</b>, que tentou guardar um número de 64 bits em 16 bits. Reúso também precisa de análise e teste.`,
       icon: '⚖️',
       title: 'Como escolher o modelo',
       body: `

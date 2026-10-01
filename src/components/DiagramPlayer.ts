@@ -1,6 +1,6 @@
 import type { LabPanel } from '../labs/Lab';
 import { prefersReducedMotion, query, queryAll } from '../app/html';
-import { StepControls } from './StepControls';
+import { StepControls, readingTime } from './StepControls';
 import type { StepControlLabels } from './StepControls';
 
 export type DiagramShape = 'box' | 'ellipse' | 'actor' | 'label';
@@ -85,7 +85,9 @@ interface Point {
 const SVG_NS: string = 'http://www.w3.org/2000/svg';
 const DEFAULT_WIDTH: number = 132;
 const DEFAULT_HEIGHT: number = 46;
-const TOKEN_TRAVEL_MS: number = 750;
+const TOKEN_TRAVEL_MS: number = 900;
+const EDGE_DRAW_MS: number = 700;
+const ARC_SAMPLES: number = 24;
 
 /** Position on an Archimedean spiral that starts at the left and turns clockwise on screen. */
 export function spiralPoint(spiral: DiagramSpiral, turn: number): Point {
@@ -103,7 +105,8 @@ export class DiagramPlayer implements LabPanel {
   private root: HTMLElement | null = null;
   private model: DiagramModel;
   private tokenPosition: Point | null = null;
-  private animationFrame: number | null = null;
+  private tokenAnimation: Animation | null = null;
+  private resizeObserver: ResizeObserver | null = null;
 
   constructor(config: DiagramConfig, controlLabels: StepControlLabels) {
     this.id = config.id;
@@ -121,6 +124,8 @@ export class DiagramPlayer implements LabPanel {
   public unmount(): void {
     this.controls.destroy();
     this.cancelAnimation();
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = null;
     this.root = null;
   }
 
@@ -147,7 +152,8 @@ export class DiagramPlayer implements LabPanel {
       '<div class="diagram-player">' +
       '  <h3 class="panel-title">' + this.config.title + '</h3>' + chips +
       '  <p class="panel-intro">' + this.model.summary + '</p>' +
-      '  <div class="diagram-canvas">' + this.renderSvg() + '</div>' +
+      '  <div class="diagram-canvas"><div class="diagram-stage">' + this.renderSvg() +
+      (this.model.noToken === true ? '' : '<div class="diagram-token" hidden><i></i></div>') + '</div></div>' +
       this.controls.renderHtml() +
       '  <div class="diagram-caption"></div>' +
       (facts === '' ? '' : '<div class="diagram-facts">' + facts + '</div>') +
@@ -159,7 +165,29 @@ export class DiagramPlayer implements LabPanel {
       node.addEventListener('click', () => this.jumpToNode(node.dataset.node ?? ''));
     }
     this.controls.attach(this.root);
-    this.controls.reset(this.model.steps.length);
+    this.controls.reset(this.model.steps.length, (index: number) => readingTime(this.model.steps[index].caption));
+    this.watchResize();
+    this.controls.autoplay();
+  }
+
+  /** The token is positioned in pixels, so it has to follow the drawing when the lab is resized. */
+  private watchResize(): void {
+    this.resizeObserver?.disconnect();
+    if (this.root === null || typeof ResizeObserver === 'undefined') return;
+    const stage: HTMLElement | null = this.root.querySelector('.diagram-stage');
+    if (stage === null) return;
+    this.resizeObserver = new ResizeObserver(() => {
+      const token: HTMLElement | null = stage.querySelector('.diagram-token');
+      if (token === null || this.tokenPosition === null) return;
+      this.cancelAnimation();
+      token.style.transform = this.pixelTransform(stage, this.tokenPosition);
+    });
+    this.resizeObserver.observe(stage);
+  }
+
+  private pixelTransform(stage: HTMLElement, point: Point): string {
+    const scale: number = stage.clientWidth / this.model.width;
+    return 'translate(' + (point.x * scale).toFixed(1) + 'px,' + (point.y * scale).toFixed(1) + 'px)';
   }
 
   private renderSvg(): string {
@@ -170,13 +198,11 @@ export class DiagramPlayer implements LabPanel {
     });
     const nodes: string = model.nodes.map((node: DiagramNode) => this.renderNode(node)).join('');
     const spiral: string = model.spiral === undefined ? '' : this.renderSpiral(model.spiral);
-    const token: string = model.noToken === true ? '' :
-      '<g class="diagram-token" style="opacity:0"><circle r="13" class="token-halo"></circle><circle r="6" class="token-core"></circle></g>';
     return '<svg xmlns="' + SVG_NS + '" viewBox="0 0 ' + model.width + ' ' + model.height + '" role="img">' +
       '<defs>' +
       '<marker id="arrow-head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="marker-fill"></path></marker>' +
       '<marker id="arrow-hollow" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M1,1 L11,6 L1,11 z" class="marker-hollow"></path></marker>' +
-      '</defs>' + spiral + edges + nodes + token + '</svg>';
+      '</defs>' + spiral + edges + nodes + '</svg>';
   }
 
   private renderNode(node: DiagramNode): string {
@@ -256,7 +282,10 @@ export class DiagramPlayer implements LabPanel {
       node.classList.toggle('visited', visited.has(id) && !step.nodes.includes(id));
     }
     for (const edge of queryAll<SVGGElement>(this.root, '.diagram-edge')) {
-      edge.classList.toggle('active', (step.edges ?? []).includes(Number(edge.dataset.edge)));
+      const active: boolean = (step.edges ?? []).includes(Number(edge.dataset.edge));
+      const wasActive: boolean = edge.classList.contains('active');
+      edge.classList.toggle('active', active);
+      if (active && !wasActive) this.drawEdge(edge);
     }
     const caption: HTMLElement = query(this.root, '.diagram-caption');
     caption.innerHTML = step.caption;
@@ -266,37 +295,45 @@ export class DiagramPlayer implements LabPanel {
     this.moveToken(step);
   }
 
+  /** Draws a newly highlighted arrow from its tail to its head, once. */
+  private drawEdge(edge: SVGGElement): void {
+    const path: SVGPathElement | null = edge.querySelector('path');
+    if (path === null || prefersReducedMotion() || typeof path.animate !== 'function') return;
+    const length: number = path.getTotalLength();
+    path.animate(
+      [{ strokeDasharray: length + ' ' + length, strokeDashoffset: length }, { strokeDasharray: length + ' ' + length, strokeDashoffset: 0 }],
+      { duration: EDGE_DRAW_MS, easing: 'ease-out' },
+    );
+  }
+
+  /**
+   * Moves the token to the step's node. The token is an HTML element over the drawing, animated with a
+   * transform, so the browser moves it on the compositor instead of repainting the whole diagram each frame.
+   */
   private moveToken(step: DiagramStep): void {
     if (this.root === null || this.model.noToken === true || step.nodes.length === 0) return;
-    const token: SVGGElement | null = this.root.querySelector<SVGGElement>('.diagram-token');
-    if (token === null) return;
+    const stage: HTMLElement | null = this.root.querySelector('.diagram-stage');
+    const token: HTMLElement | null = this.root.querySelector('.diagram-token');
+    if (stage === null || token === null) return;
     const spiral: DiagramSpiral | undefined = this.model.spiral;
     const arc: [number, number] | undefined = step.arc;
-    const target: Point = spiral !== undefined && arc !== undefined ? spiralPoint(spiral, arc[1]) : this.dock(this.node(step.nodes[0]));
-    const origin: Point = spiral !== undefined && arc !== undefined ? spiralPoint(spiral, arc[0]) : this.tokenPosition ?? target;
-    const place = (point: Point): void => {
-      token.setAttribute('transform', 'translate(' + point.x.toFixed(1) + ',' + point.y.toFixed(1) + ')');
-    };
-    this.cancelAnimation();
-    token.style.opacity = '1';
-    this.tokenPosition = target;
-    if (prefersReducedMotion()) {
-      place(target);
-      return;
+    const points: Point[] = [];
+    if (spiral !== undefined && arc !== undefined) {
+      for (let i = 0; i <= ARC_SAMPLES; i++) points.push(spiralPoint(spiral, arc[0] + ((arc[1] - arc[0]) * i) / ARC_SAMPLES));
+    } else {
+      const target: Point = this.dock(this.node(step.nodes[0]));
+      points.push(this.tokenPosition ?? target, target);
     }
-    const startTime: number = performance.now();
-    const frame = (now: number): void => {
-      const linear: number = Math.min(1, (now - startTime) / TOKEN_TRAVEL_MS);
-      const eased: number = linear < 0.5 ? 2 * linear * linear : 1 - Math.pow(-2 * linear + 2, 2) / 2;
-      if (spiral !== undefined && arc !== undefined) {
-        place(spiralPoint(spiral, arc[0] + (arc[1] - arc[0]) * eased));
-      } else {
-        place({ x: origin.x + (target.x - origin.x) * eased, y: origin.y + (target.y - origin.y) * eased });
-      }
-      if (linear < 1) this.animationFrame = window.requestAnimationFrame(frame);
-      else this.animationFrame = null;
-    };
-    this.animationFrame = window.requestAnimationFrame(frame);
+    const target: Point = points[points.length - 1];
+    this.cancelAnimation();
+    token.hidden = false;
+    this.tokenPosition = target;
+    token.style.transform = this.pixelTransform(stage, target);
+    if (prefersReducedMotion() || typeof token.animate !== 'function') return;
+    this.tokenAnimation = token.animate(
+      points.map((point: Point) => ({ transform: this.pixelTransform(stage, point) })),
+      { duration: TOKEN_TRAVEL_MS, easing: 'cubic-bezier(0.45, 0, 0.2, 1)' },
+    );
   }
 
   private jumpToNode(nodeId: string): void {
@@ -307,10 +344,8 @@ export class DiagramPlayer implements LabPanel {
   }
 
   private cancelAnimation(): void {
-    if (this.animationFrame !== null) {
-      window.cancelAnimationFrame(this.animationFrame);
-      this.animationFrame = null;
-    }
+    this.tokenAnimation?.cancel();
+    this.tokenAnimation = null;
   }
 
   private node(id: string): DiagramNode {

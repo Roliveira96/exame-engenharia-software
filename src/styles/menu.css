@@ -12,40 +12,38 @@
 
 .menu > * { position: relative; }
 
-/* Animated backdrop: drifting glows plus a slow lifecycle orbit. */
+/*
+ * Animated backdrop. The glows are plain gradients on one oversized layer and the orbit is made of
+ * bordered circles: both move only with transforms, so nothing is repainted while they animate.
+ */
 .menu-backdrop { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 
-.menu-backdrop i {
+.menu-glow {
   position: absolute;
-  width: 620px;
-  height: 620px;
+  inset: -120px;
+  background:
+    radial-gradient(620px 420px at 12% 8%, rgba(245, 176, 37, 0.17), transparent 70%),
+    radial-gradient(700px 460px at 88% 10%, rgba(91, 61, 245, 0.26), transparent 70%),
+    radial-gradient(760px 420px at 55% 62%, rgba(20, 184, 166, 0.09), transparent 70%);
+}
+
+.menu-orbit { position: absolute; top: 310px; left: 50%; width: 0; height: 0; }
+
+.orbit-ring {
+  position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.32;
-  animation: drift 22s ease-in-out infinite alternate;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  will-change: transform;
+  animation: spin 80s linear infinite;
 }
 
-.menu-backdrop i:nth-child(1) { background: #f5b025; top: -260px; left: -180px; opacity: 0.2; }
-.menu-backdrop i:nth-child(2) { background: #5b3df5; top: -160px; right: -220px; animation-delay: -7s; }
-.menu-backdrop i:nth-child(3) { background: #14b8a6; top: 620px; left: 40%; opacity: 0.14; animation-delay: -13s; }
-
-@keyframes drift { to { transform: translate(70px, 50px) scale(1.12); } }
-
-.menu-orbit {
-  position: absolute;
-  top: -70px;
-  left: 50%;
-  width: 760px;
-  margin-left: -380px;
-  opacity: 0.5;
-}
-
-.orbit-ring { fill: none; stroke: rgba(255, 255, 255, 0.09); stroke-width: 1; stroke-dasharray: 3 9; transform-origin: 300px 300px; animation: spin 70s linear infinite; }
-.orbit-dots { transform-origin: 300px 300px; animation: spin 38s linear infinite; }
-.orbit-dots circle { fill: var(--accent); opacity: 0.75; }
-.orbit-dots.reverse circle { fill: var(--indigo); }
-.slow { animation-duration: 110s; }
-.reverse { animation-direction: reverse; animation-duration: 54s; }
+.orbit-ring i { position: absolute; width: 7px; height: 7px; margin: -4px; border-radius: 50%; background: var(--accent); opacity: 0.4; }
+.orbit-ring i:nth-child(1) { top: 0; left: 50%; }
+.orbit-ring i:nth-child(2) { top: 50%; left: 100%; background: var(--indigo); }
+.orbit-ring i:nth-child(3) { top: 100%; left: 50%; background: var(--teal); }
+.ring-large { width: 640px; height: 640px; margin: -320px; animation-duration: 120s; }
+.ring-medium { width: 520px; height: 520px; margin: -260px; animation-duration: 70s; animation-direction: reverse; }
+.ring-small { width: 340px; height: 340px; margin: -170px; animation-duration: 46s; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .menu-header { text-align: center; max-width: 800px; animation: rise-in 0.7s var(--ease) both; }
@@ -92,15 +90,11 @@
 }
 
 .gradient-text {
-  background: linear-gradient(100deg, var(--yellow), #ff8a3d 45%, var(--pink) 70%, var(--yellow));
-  background-size: 220% 100%;
+  background: linear-gradient(100deg, var(--yellow), #ff8a3d 55%, var(--pink));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: shine 7s linear infinite;
 }
-
-@keyframes shine { to { background-position: -220% 0; } }
 
 .menu-header p { color: var(--text-mid); margin: 0; font-size: 16.5px; text-wrap: pretty; }
 .menu-header p b { color: var(--text); }
@@ -169,15 +163,14 @@
   right: -110px;
   top: -130px;
   border-radius: 50%;
-  background: var(--card-color);
-  opacity: 0.07;
-  filter: blur(30px);
+  background: radial-gradient(closest-side, var(--card-color), transparent);
+  opacity: 0.1;
   transition: opacity 0.3s;
 }
 
 .card:hover { transform: translateY(-5px); border-color: var(--card-color); box-shadow: 0 22px 50px -24px var(--card-color); }
 .card:hover::before { transform: scaleX(1); }
-.card:hover::after { opacity: 0.18; }
+.card:hover::after { opacity: 0.26; }
 .card:hover .card-icon { transform: scale(1.12) rotate(-6deg); }
 
 .card-number { position: absolute; top: 18px; right: 22px; font-family: var(--font-code); color: var(--text-soft); font-size: 14px; }

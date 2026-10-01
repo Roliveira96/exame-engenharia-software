@@ -13,6 +13,7 @@ export const estimation: Topic = {
   lessons: [
     {
       id: 'est-concepts',
+      funFact: `Tom DeMarco, autor de "não se pode controlar o que não se pode medir", publicou em 2009 um artigo dizendo que <b>tinha exagerado</b>: medir é útil, mas os projetos que mais importam são justamente os mais difíceis de controlar por números.`,
       icon: '📏',
       title: 'Medida, medição, métrica e indicador',
       body: `
@@ -30,6 +31,7 @@ export const estimation: Topic = {
     },
     {
       id: 'est-kinds',
+      funFact: `Frase atribuída a Bill Gates: "<b>medir o progresso de um programa por linhas de código é como medir o progresso da construção de um avião pelo peso</b>".`,
       icon: '🗂️',
       title: 'Tipos de métricas de software',
       body: `
@@ -51,6 +53,7 @@ export const estimation: Topic = {
     },
     {
       id: 'est-fp',
+      funFact: `Albrecht criou os pontos por função na <b>IBM</b> porque precisava comparar a produtividade de equipes que programavam em <b>linguagens diferentes</b>, e as linhas de código não permitiam isso.`,
       icon: '🧮',
       title: 'Análise de pontos por função (APF)',
       body: `
@@ -73,6 +76,7 @@ export const estimation: Topic = {
     },
     {
       id: 'est-project',
+      funFact: `<b>Lei de Hofstadter:</b> "sempre leva mais tempo do que você espera, mesmo quando você leva em conta a Lei de Hofstadter".`,
       icon: '🔮',
       title: 'Estimativas de projeto',
       body: `
@@ -94,6 +98,7 @@ export const estimation: Topic = {
     },
     {
       id: 'est-cocomo',
+      funFact: `Boehm calibrou o COCOMO original com dados de <b>63 projetos reais</b> da TRW. Por isso se diz que é um modelo <b>empírico</b>: as constantes não vieram de teoria, vieram de histórico.`,
       icon: '🏗️',
       title: 'COCOMO',
       body: `
@@ -112,6 +117,7 @@ export const estimation: Topic = {
     },
     {
       id: 'est-agile',
+      funFact: `O Planning Poker foi inventado por <b>James Grenning</b>, em 2002, cansado de reuniões de estimativa em que duas pessoas falavam por horas e o resto concordava com sono.`,
       icon: '🃏',
       title: 'Estimativa ágil: story points e Planning Poker',
       body: `
@@ -130,6 +136,7 @@ export const estimation: Topic = {
     },
     {
       id: 'est-feasibility',
+      funFact: `A <b>Ópera de Sydney</b> é o exemplo favorito de estimativa otimista: prevista para 4 anos e 7 milhões de dólares australianos, levou <b>14 anos</b> e custou <b>102 milhões</b>.`,
       icon: '🚦',
       title: 'Estudo de viabilidade',
       body: `
@@ -154,6 +161,7 @@ export const estimation: Topic = {
     },
     {
       id: 'est-quality-metrics',
+      funFact: `McCabe sugeriu em 1976 um limite prático: módulo com complexidade ciclomática <b>acima de 10</b> merece ser dividido. Quase cinquenta anos depois, muitas ferramentas de análise de código ainda usam esse número como alerta.`,
       icon: '🩺',
       title: 'Métricas de qualidade e de produto',
       body: `

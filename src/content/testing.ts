@@ -13,6 +13,7 @@ export const testing: Topic = {
   lessons: [
     {
       id: 'test-vv',
+      funFact: `O software de navegação do foguete <b>Ariane 5</b> estava <b>verificado</b>: fazia exatamente o que a especificação herdada do Ariane 4 mandava. Só não era <b>válido</b> para o foguete novo, bem mais veloz. Explodiu no primeiro voo, em 1996.`,
       icon: '⚖️',
       title: 'Verificação × validação',
       body: `
@@ -34,6 +35,7 @@ export const testing: Topic = {
     },
     {
       id: 'test-concepts',
+      funFact: `Em 9 de setembro de 1947, a equipe de <b>Grace Hopper</b> achou uma <b>mariposa</b> presa em um relé do computador Mark II e a colou no diário de bordo com a anotação "primeiro caso real de bug encontrado". O caderno está hoje no museu Smithsonian.`,
       icon: '🐞',
       title: 'Erro, defeito, falha e os princípios do teste',
       body: `
@@ -56,6 +58,7 @@ export const testing: Topic = {
     },
     {
       id: 'test-levels',
+      funFact: `Em 2012, a corretora <b>Knight Capital</b> perdeu <b>US$ 440 milhões em 45 minutos</b>: o código novo foi instalado em sete servidores e esquecido no oitavo, que continuou rodando uma função antiga. Cada servidor funcionava sozinho; o problema estava no <b>conjunto</b>.`,
       icon: '🪜',
       title: 'Níveis de teste',
       body: `
@@ -80,6 +83,7 @@ export const testing: Topic = {
     },
     {
       id: 'test-blackbox',
+      funFact: `O erro mais famoso da programação tem até nome: <b>off-by-one</b> (erro por um). É o laço que roda uma vez a mais, o "menor que" que devia ser "menor ou igual". A análise de valor limite existe para caçá-lo.`,
       icon: '⬛',
       title: 'Teste caixa-preta (funcional)',
       body: `
@@ -97,6 +101,7 @@ export const testing: Topic = {
     },
     {
       id: 'test-whitebox',
+      funFact: `<b>Cobertura de 100% não prova nada sozinha.</b> Dá para executar todas as linhas de um programa e ainda assim não testar a divisão por zero, se nenhum caso usar o valor zero.`,
       icon: '⬜',
       title: 'Teste caixa-branca (estrutural)',
       body: `
@@ -115,6 +120,7 @@ export const testing: Topic = {
     },
     {
       id: 'test-system',
+      funFact: `A <b>Netflix</b> criou o <b>Chaos Monkey</b>: um programa que desliga servidores de produção <b>aleatoriamente</b>, em horário comercial, para garantir que o sistema se recupera sozinho. Teste de recuperação levado a sério.`,
       icon: '🧰',
       title: 'Tipos de teste',
       body: `
@@ -135,6 +141,7 @@ export const testing: Topic = {
     },
     {
       id: 'test-reviews',
+      funFact: `A técnica do <b>pato de borracha</b>, do livro <i>O Programador Pragmático</i>: explique o seu código, linha por linha, para um pato de borracha. Ao ser obrigado a explicar, você mesmo encontra o defeito. É uma revisão com um revisor muito paciente.`,
       icon: '🔎',
       title: 'Revisões e inspeções de software',
       body: `
@@ -153,6 +160,7 @@ export const testing: Topic = {
     },
     {
       id: 'test-plan',
+      funFact: `Kent Beck escreveu a primeira versão do <b>JUnit</b> com Erich Gamma (da Gang of Four) durante um <b>voo</b> de Zurique para Atlanta, em 1997.`,
       icon: '🗒️',
       title: 'Plano, caso de teste e automação',
       body: `

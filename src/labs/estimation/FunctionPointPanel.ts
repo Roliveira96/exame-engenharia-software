@@ -1,5 +1,5 @@
 import type { LabPanel } from '../Lab';
-import { animateNumber, formatNumber, query, queryAll } from '../../app/html';
+import { animateNumber, formatNumber, query, queryAll, setText } from '../../app/html';
 import {
   COMPLEXITIES, FUNCTION_KINDS, FUNCTION_POINT_WEIGHTS, MAX_INFLUENCE_SUM,
   adjustmentFactor, functionPoints, unadjustedFunctionPoints,
@@ -122,8 +122,8 @@ export class FunctionPointPanel implements LabPanel {
       const weight: number = FUNCTION_POINT_WEIGHTS[kind][entry.complexity];
       if (writeInputs) query<HTMLInputElement>(row, '.fp-count').value = String(entry.count);
       for (const button of queryAll(row, '[data-complexity]')) button.classList.toggle('active', button.dataset.complexity === entry.complexity);
-      query(row, '.fp-weight').textContent = '× ' + weight;
-      query(row, '.fp-subtotal').textContent = String(entry.count * weight);
+      setText(query(row, '.fp-weight'), '× ' + weight);
+      setText(query(row, '.fp-subtotal'), String(entry.count * weight));
     }
     if (writeInputs) {
       query<HTMLInputElement>(root, '.fp-range').value = String(this.influence);
@@ -132,12 +132,15 @@ export class FunctionPointPanel implements LabPanel {
     const countTotal: number = unadjustedFunctionPoints(this.counts);
     const factor: number = adjustmentFactor(this.influence);
     const result: number = functionPoints(countTotal, this.influence);
-    query(root, '.fp-total').textContent = String(countTotal);
-    query(root, '.fp-influence').textContent = String(this.influence);
+    setText(query(root, '.fp-total'), String(countTotal));
+    setText(query(root, '.fp-influence'), String(this.influence));
     query(root, '.fp-formula').innerHTML =
       'PF = ' + countTotal + ' × [0,65 + 0,01 × ' + this.influence + '] = ' + countTotal + ' × ' + formatNumber(factor, 2) + ' = <b>' + formatNumber(result) + '</b>';
-    animateNumber(query(root, '.fp-factor'), factor, 2);
-    animateNumber(query(root, '.fp-result'), result, 1);
-    query(root, '.fp-effort').innerHTML = this.config.effortLabel(formatNumber(result / this.productivity));
+    // Presets count up to the new value; live edits (slider, typing) update at once so dragging stays light.
+    animateNumber(query(root, '.fp-factor'), factor, 2, writeInputs ? 450 : 0);
+    animateNumber(query(root, '.fp-result'), result, 1, writeInputs ? 450 : 0);
+    const effort: string = this.config.effortLabel(formatNumber(result / this.productivity));
+    const effortElement: HTMLElement = query(root, '.fp-effort');
+    if (effortElement.innerHTML !== effort) effortElement.innerHTML = effort;
   }
 }

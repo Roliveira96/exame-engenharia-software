@@ -13,6 +13,7 @@ export const quality: Topic = {
   lessons: [
     {
       id: 'qual-product',
+      funFact: `O <b>bug do Pentium</b> (1994) estava gravado no chip: uma tabela de divisão com cinco entradas erradas. O erro só aparecia em contas raras, mas custou à Intel uma reserva de <b>US$ 475 milhões</b> para trocar processadores.`,
       icon: '📦',
       title: 'O produto de software',
       body: `
@@ -33,6 +34,7 @@ export const quality: Topic = {
     },
     {
       id: 'qual-concept',
+      funFact: `Philip Crosby deu a um livro de 1979 um título provocador: <i>Quality Is Free</i>. A tese: qualidade não custa; o que custa é a <b>falta</b> dela.`,
       icon: '💎',
       title: 'O que é qualidade de software',
       body: `
@@ -52,6 +54,7 @@ export const quality: Topic = {
     },
     {
       id: 'qual-product-process',
+      funFact: `O CMM nasceu de uma dor de cabeça do <b>Departamento de Defesa dos EUA</b>: como saber, antes de assinar o contrato, se um fornecedor conseguiria entregar o software? A resposta do SEI foi avaliar o <b>processo</b> do fornecedor.`,
       icon: '⚖️',
       title: 'Qualidade de produto × qualidade de processo',
       body: `
@@ -67,6 +70,7 @@ export const quality: Topic = {
     },
     {
       id: 'qual-iso9126',
+      funFact: `A ISO/IEC 9126 é de <b>1991</b> e foi substituída em 2011 pela 25010, da família <b>SQuaRE</b>. O nome parece "quadrado" em inglês, mas é sigla de <i>Software product Quality Requirements and Evaluation</i>.`,
       icon: '🎡',
       title: 'ISO/IEC 9126: as seis características',
       body: `
@@ -86,6 +90,7 @@ export const quality: Topic = {
     },
     {
       id: 'qual-mccall',
+      funFact: `O modelo de McCall foi encomendado pela <b>Força Aérea dos EUA</b> à General Electric, em 1977. Muitas das normas que estudamos hoje vieram de contratos militares.`,
       icon: '🔺',
       title: 'Fatores de qualidade de McCall',
       body: `
@@ -101,6 +106,7 @@ export const quality: Topic = {
     },
     {
       id: 'qual-sqa',
+      funFact: `Nas fábricas da Toyota existe a corda <b>andon</b>: qualquer operário pode puxá-la e <b>parar a linha inteira</b> ao ver um defeito. A ideia de construir a qualidade no processo, em vez de inspecionar no fim, vem daí.`,
       icon: '🛡️',
       title: 'Garantia × controle de qualidade',
       body: `
@@ -116,6 +122,7 @@ export const quality: Topic = {
     },
     {
       id: 'qual-cost',
+      funFact: `A missão <b>Mariner 1</b> (1962) foi destruída minutos após o lançamento por causa de um símbolo que faltou na transcrição de uma fórmula. Arthur C. Clarke a chamou de "<b>o hífen mais caro da história</b>".`,
       icon: '💰',
       title: 'Custo da qualidade',
       body: `
@@ -132,6 +139,7 @@ export const quality: Topic = {
     },
     {
       id: 'qual-maturity',
+      funFact: `O "pai" do CMM é <b>Watts Humphrey</b>, que passou 27 anos na IBM antes de ir para o SEI. Ele costumava dizer que o primeiro passo para melhorar é <b>saber onde você está</b>: daí a escada de níveis.`,
       icon: '🪜',
       title: 'Modelos de maturidade: CMMI e MPS.BR',
       body: `

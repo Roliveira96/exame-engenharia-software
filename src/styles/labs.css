@@ -64,7 +64,13 @@
 .step-play { background: var(--topic-color); border-color: var(--topic-color); color: var(--accent-ink); width: 46px; }
 .step-counter { font-family: var(--font-code); font-size: 12.5px; color: var(--text-soft); min-width: 48px; text-align: center; }
 .step-track { flex: 1; height: 5px; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
-.step-fill { display: block; height: 100%; background: var(--topic-color); border-radius: inherit; transition: width 0.4s var(--ease); }
+.step-track { position: relative; }
+.step-fill { display: block; height: 100%; width: 100%; background: var(--topic-color); border-radius: inherit; transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+/* While playing, a lighter bar counts down the reading time of the current step. */
+.step-timer { position: absolute; inset: 0; background: #fff; opacity: 0.35; border-radius: inherit; transform: scaleX(0); transform-origin: left; }
+@keyframes step-timer { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.step-controls.playing .step-play { animation: play-pulse 1.6s ease-in-out infinite; }
+@keyframes play-pulse { 50% { transform: scale(1.08); } }
 
 /* ===== Diagram player ===== */
 .diagram-canvas {
@@ -78,22 +84,28 @@
 }
 
 .diagram-canvas svg { display: block; width: 100%; height: auto; }
+.diagram-stage { position: relative; }
+
+/* The token lives outside the SVG so that moving it never repaints the drawing. */
+.diagram-token { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; will-change: transform; z-index: 2; }
+.diagram-token i { position: absolute; left: -8px; top: -8px; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3px solid var(--topic-color); box-sizing: border-box; }
+.diagram-token::after { content: ''; position: absolute; left: -14px; top: -14px; width: 28px; height: 28px; border-radius: 50%; background: var(--topic-color); opacity: 0.3; will-change: transform, opacity; animation: halo 1.5s ease-in-out infinite; }
+@keyframes halo { 50% { transform: scale(1.5); opacity: 0.08; } }
 
 .diagram-node { --node-color: var(--topic-color); cursor: pointer; }
 .diagram-node rect, .diagram-node ellipse { fill: #191c27; stroke: color-mix(in srgb, var(--node-color) 45%, #2c3142); stroke-width: 1.5; transition: fill 0.35s, stroke 0.35s, stroke-width 0.35s, filter 0.35s; }
 .diagram-node text { fill: var(--text-mid); font-size: 12.5px; font-weight: 600; font-family: var(--font); pointer-events: none; transition: fill 0.3s; }
 .diagram-node.visited rect, .diagram-node.visited ellipse { stroke: var(--node-color); fill: color-mix(in srgb, var(--node-color) 9%, #191c27); }
-.diagram-node.active rect, .diagram-node.active ellipse { fill: color-mix(in srgb, var(--node-color) 28%, #191c27); stroke: var(--node-color); stroke-width: 2.5; filter: drop-shadow(0 0 10px color-mix(in srgb, var(--node-color) 70%, transparent)); }
+.diagram-node.active rect, .diagram-node.active ellipse { fill: color-mix(in srgb, var(--node-color) 36%, #191c27); stroke: var(--node-color); stroke-width: 3.5; }
 .diagram-node.active text { fill: #fff; }
 .diagram-node.shape-label text { font-size: 12px; fill: var(--text-soft); }
 .diagram-node.shape-label.active text { fill: var(--node-color); font-weight: 800; }
 .actor-figure circle, .actor-figure path { fill: none; stroke: var(--text-mid); stroke-width: 2; stroke-linecap: round; transition: stroke 0.3s; }
-.diagram-node.active .actor-figure circle, .diagram-node.active .actor-figure path { stroke: var(--node-color); filter: drop-shadow(0 0 6px var(--node-color)); }
+.diagram-node.active .actor-figure circle, .diagram-node.active .actor-figure path { stroke: var(--node-color); stroke-width: 3; }
 
-.diagram-edge path { fill: none; stroke: #4b5169; stroke-width: 1.6; transition: stroke 0.3s, stroke-width 0.3s; }
+.diagram-edge path { fill: none; stroke: #4b5169; stroke-width: 1.6; }
 .diagram-edge.dashed path { stroke-dasharray: 6 5; }
-.diagram-edge.active path { stroke: var(--topic-color); stroke-width: 2.4; stroke-dasharray: 7 5; animation: march 0.7s linear infinite; }
-@keyframes march { to { stroke-dashoffset: -12; } }
+.diagram-edge.active path { stroke: var(--topic-color); stroke-width: 2.6; }
 .edge-label { fill: var(--text-soft); font-size: 11px; font-style: italic; font-family: var(--font); }
 .diagram-edge.active .edge-label { fill: var(--topic-color); }
 .marker-fill { fill: context-stroke; }
@@ -102,9 +114,6 @@
 .diagram-spiral line { stroke: #2c3142; stroke-width: 1; stroke-dasharray: 4 5; }
 .diagram-spiral path { fill: none; stroke: color-mix(in srgb, var(--topic-color) 55%, #2c3142); stroke-width: 2; }
 
-.token-halo { fill: var(--topic-color); opacity: 0.25; animation: halo 1.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-.token-core { fill: #fff; stroke: var(--topic-color); stroke-width: 3; }
-@keyframes halo { 50% { transform: scale(1.45); opacity: 0.08; } }
 
 .diagram-caption {
   min-height: 76px;
@@ -153,6 +162,7 @@
 .stack-layer.active { background: color-mix(in srgb, var(--layer-color) 32%, var(--surface)); box-shadow: 0 0 22px -4px var(--layer-color); transform: scale(1.03); }
 .shape-ladder .stack-layer { justify-content: flex-start; }
 .stack-actions { display: flex; justify-content: center; margin-bottom: 12px; }
+.stack-tour.touring { border-color: var(--topic-color); color: var(--topic-color); }
 
 .stack-detail {
   --layer-color: var(--topic-color);
@@ -354,6 +364,7 @@
 .field-pessimistic input { accent-color: var(--red); }
 
 .calc-formula {
+  contain: layout paint;
   padding: 10px 14px;
   border-radius: 10px;
   background: #0c0e14;
@@ -373,6 +384,7 @@
 .stat-tiles.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .stat-tile { padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); display: flex; flex-direction: column; gap: 2px; }
 .stat-tile small { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-soft); }
+.stat-tile { contain: layout paint; }
 .stat-tile b { font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; }
 .stat-tile.highlight { border-color: color-mix(in srgb, var(--topic-color) 60%, transparent); background: color-mix(in srgb, var(--topic-color) 10%, var(--surface)); }
 .stat-tile.highlight b { color: var(--topic-color); }
@@ -395,7 +407,7 @@
 .compare-bars { display: flex; flex-direction: column; gap: 7px; }
 .compare-row { display: grid; grid-template-columns: 110px 1fr 52px; align-items: center; gap: 10px; font-size: 12.5px; color: var(--text-soft); }
 .compare-track { height: 12px; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
-.compare-track i { display: block; height: 100%; border-radius: inherit; background: var(--text-soft); transition: width 0.5s var(--ease), background 0.3s; }
+.compare-track i { display: block; height: 100%; width: 100%; border-radius: inherit; background: var(--text-soft); transform-origin: left; transition: transform 0.5s var(--ease), background 0.3s; }
 .compare-row b { font-family: var(--font-code); text-align: right; }
 .compare-row.active { color: var(--text); }
 .compare-row.active i { background: var(--topic-color); }
@@ -475,7 +487,7 @@
 .wheel-slice text { fill: var(--text); font-size: 12.5px; font-weight: 700; font-family: var(--font); pointer-events: none; }
 .wheel-slice:hover path { fill: color-mix(in srgb, var(--slice-color) 40%, #14161d); }
 .wheel-slice.active { transform: translate(var(--push-x), var(--push-y)); }
-.wheel-slice.active path { fill: color-mix(in srgb, var(--slice-color) 62%, #14161d); filter: drop-shadow(0 0 12px var(--slice-color)); }
+.wheel-slice.active path { fill: color-mix(in srgb, var(--slice-color) 66%, #14161d); stroke-width: 3; }
 .wheel-hub { fill: #0c0e14; stroke: var(--border); stroke-width: 1.5; }
 .wheel-hub-text { fill: var(--text-mid); font-size: 13px; font-weight: 800; letter-spacing: 0.08em; font-family: var(--font); }
 
@@ -515,7 +527,7 @@
 .cyclomatic-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 12px; margin-bottom: 12px; align-items: stretch; }
 
 .code-block { margin: 0; padding: 10px 0; border-radius: 14px; border: 1px solid var(--border); background: #0c0e14; font-family: var(--font-code); font-size: 12px; line-height: 1.7; overflow-x: auto; }
-.code-line { display: flex; gap: 10px; padding: 0 12px 0 0; border-left: 3px solid transparent; transition: background 0.3s, border-color 0.3s; }
+.code-line { display: flex; gap: 10px; padding: 0 12px 0 0; border-left: 3px solid transparent; }
 .code-line i { width: 30px; text-align: right; color: #4b5169; font-style: normal; user-select: none; flex-shrink: 0; }
 .code-line span { white-space: pre; color: var(--text-mid); }
 .code-line.active { background: color-mix(in srgb, var(--topic-color) 16%, transparent); border-left-color: var(--topic-color); }
@@ -523,9 +535,9 @@
 
 .flow-graph { display: grid; place-items: center; }
 .flow-graph svg { max-height: 300px; }
-.flow-node circle { fill: #191c27; stroke: #4b5169; stroke-width: 2; transition: fill 0.3s, stroke 0.3s, filter 0.3s; }
+.flow-node circle { fill: #191c27; stroke: #4b5169; stroke-width: 2; }
 .flow-node text { fill: var(--text-mid); font-size: 13px; font-weight: 700; font-family: var(--font-code); }
-.flow-node.active circle { fill: var(--topic-color); stroke: var(--topic-color); filter: drop-shadow(0 0 8px var(--topic-color)); }
+.flow-node.active circle { fill: var(--topic-color); stroke: #fff; stroke-width: 2.5; }
 .flow-node.active text { fill: var(--accent-ink); }
 .stat-tiles.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .stat-tiles.four .stat-tile { padding: 8px 12px; }
@@ -540,7 +552,7 @@
 /* ===== Deployment strategies ===== */
 .rollout .diagram-caption { min-height: 0; margin-bottom: 12px; }
 .rollout-chart { padding: 14px 16px 10px; border-radius: 14px; border: 1px solid var(--border); background: #0c0e14; margin-bottom: 12px; }
-.rollout-rows { position: relative; display: flex; flex-direction: column; gap: 10px; }
+.rollout-rows { position: relative; display: flex; flex-direction: column; gap: 10px; overflow: hidden; padding: 4px 0; }
 .rollout-row, .rollout-axis { display: grid; grid-template-columns: 128px minmax(0, 1fr); align-items: center; gap: 10px; }
 .rollout-label { font-size: 12px; font-weight: 600; color: var(--text-mid); line-height: 1.25; }
 .rollout-track { position: relative; height: 26px; border-radius: 8px; background: var(--surface-2); overflow: hidden; }
@@ -551,18 +563,17 @@
 /* The curtain hides the future and slides away, revealing the timeline left to right. */
 .rollout-curtain {
   position: absolute;
-  top: -4px;
-  bottom: -4px;
+  top: 0;
+  bottom: 0;
   right: 0;
   left: 138px;
   background: #0c0e14;
-  border-left: 2px solid var(--yellow);
-  box-shadow: -6px 0 14px -4px var(--yellow);
-  animation: curtain 4.5s linear forwards;
-  transform-origin: right;
+  border-left: 3px solid var(--yellow);
+  will-change: transform;
+  animation: curtain 5s linear forwards;
 }
 
-@keyframes curtain { 98% { opacity: 1; } to { left: 100%; opacity: 0; } }
+@keyframes curtain { to { transform: translateX(100%); } }
 
 .rollout-ticks { position: relative; height: 22px; margin-top: 6px; border-top: 1px solid #3a4056; }
 .rollout-ticks span { position: absolute; top: 4px; transform: translateX(-50%); font-family: var(--font-code); font-size: 10.5px; color: var(--text-soft); }

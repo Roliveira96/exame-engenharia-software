@@ -57,6 +57,7 @@ export const T = {
     tabFlashcards: '🃏 Flashcards',
     examTip: '🎯 Cai na prova',
     mnemonic: '🧠 Macete',
+    funFact: '🤓 Você sabia?',
     understood: 'Entendi',
     lessonOf: (index: number, total: number): string => index + '/' + total,
     progress: (percent: number): string => percent + '% dominado',

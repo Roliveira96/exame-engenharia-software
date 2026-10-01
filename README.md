@@ -16,7 +16,7 @@
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
-![Testes](https://img.shields.io/badge/testes-242%20passando-success?logo=vitest&logoColor=white)
+![Testes](https://img.shields.io/badge/testes-267%20passando-success?logo=vitest&logoColor=white)
 ![Sem frameworks](https://img.shields.io/badge/sem-frameworks-3ddc97)
 ![UTFPR](https://img.shields.io/badge/UTFPR-Campus%20Guarapuava-F6C212?logoColor=231F20)
 
@@ -31,14 +31,72 @@
 
 ## 📑 Sumário
 
+- [O sistema em imagens](#-o-sistema-em-imagens)
 - [Como rodar](#-como-rodar)
 - [Como estudar com o material](#-como-estudar-com-o-material)
 - [Conteúdo: a ementa oficial, tópico por tópico](#-conteúdo-a-ementa-oficial-tópico-por-tópico)
 - [Os laboratórios](#-os-laboratórios)
 - [Simulado e flashcards](#-simulado-e-flashcards)
 - [Estrutura do projeto](#-estrutura-do-projeto)
+- [Animações fluidas, medidas](#-animações-fluidas-medidas)
 - [Testes](#-testes)
 - [Bibliografia](#-bibliografia)
+
+---
+
+## 📸 O sistema em imagens
+
+Um passeio rápido pelo que o material oferece. Todas as imagens são capturas reais do sistema rodando.
+
+**1. Estudo guiado, com o que cai na prova, macete e uma curiosidade em cada conceito.** À direita, o laboratório toca sozinho e explica cada passo.
+
+![Conceito com curiosidade e laboratório](docs/screenshots/11-concept-curiosity.png)
+
+**2. Simulador de modelos de processo.** O ponto luminoso percorre a espiral de Boehm enquanto a legenda narra cada setor.
+
+![Modelo espiral](docs/screenshots/02-lifecycles-spiral.png)
+
+**3. Simulador de Sprint.** Os cartões andam no quadro, o papel responsável acende e o burndown é desenhado dia a dia.
+
+![Simulador de Sprint](docs/screenshots/03-agile-sprint.png)
+
+**4. Questões comentadas e diagrama de casos de uso.** Errou? A explicação aparece na hora.
+
+![Questões e casos de uso](docs/screenshots/04-requirements-questions.png)
+
+**5. Dissertativas com resposta-modelo.** O aluno escreve, compara e marca os pontos que não podem faltar.
+
+![Dissertativa com resposta-modelo](docs/screenshots/12-written-question.png)
+
+**6. Calculadora de pontos por função** e **mesa de Planning Poker.**
+
+![Pontos por função](docs/screenshots/05-estimation-function-points.png)
+
+![Planning Poker](docs/screenshots/13-planning-poker.png)
+
+**7. Roda da qualidade (ISO/IEC 9126).**
+
+![Roda da qualidade](docs/screenshots/07-quality-wheel.png)
+
+**8. Teste caixa-preta e caixa-branca na prática:** classes de equivalência com valores limite, e grafo de fluxo com complexidade ciclomática.
+
+![Valor limite](docs/screenshots/15-boundary-values.png)
+
+![Complexidade ciclomática](docs/screenshots/06-testing-cyclomatic.png)
+
+**9. Estratégias de implantação na linha do tempo.**
+
+![Estratégias de implantação](docs/screenshots/14-deployment-strategies.png)
+
+**10. Simulado cronometrado, com nota e gabarito comentado.**
+
+![Simulado em andamento](docs/screenshots/08-exam-running.png)
+
+![Resultado do simulado](docs/screenshots/09-exam-result.png)
+
+**11. Flashcards para a revisão final.**
+
+![Flashcards](docs/screenshots/10-flashcards.png)
 
 ---
 
@@ -58,7 +116,8 @@ Abra **http://localhost:5174** (a porta é diferente da dos outros exames, para 
 | Comando | O que faz |
 |---|---|
 | `npm run dev` | Servidor de desenvolvimento, acessível também pelo IP da rede local |
-| `npm test` | Roda os 242 testes automatizados |
+| `npm test` | Roda os 267 testes automatizados |
+| `npm run perf` | Mede a fluidez de cada tela e animação (com o `npm run dev` rodando) |
 | `npm run build` | Checa os tipos com `tsc` e gera a versão final em `dist/` |
 | `npm run preview` | Serve a versão gerada em `dist/` |
 | `node scripts/capture_screenshots.js` | Regera as imagens deste README (com o `npm run dev` rodando) |
@@ -71,15 +130,13 @@ O progresso (conceitos entendidos, questões acertadas, flashcards dominados e h
 
 Cada tópico divide a tela em duas, no mesmo padrão dos exames de Sistemas Operacionais e de Padrões de Projeto:
 
-- **Esquerda, o estudo.** Quatro abas: **📘 Conceitos** (a teoria em cards, com o que *cai na prova* e um *macete* para lembrar), **🎯 Questões** de múltipla escolha comentadas, **✍️ Dissertativas** com resposta-modelo e os pontos que não podem faltar, e **🃏 Flashcards**.
-- **Direita, o laboratório.** Uma janela com simuladores e jogos daquele tópico. O botão **▶** de cada conceito abre o laboratório exatamente no ponto que ilustra aquele assunto.
-
-![Tópico com laboratório](docs/screenshots/02-lifecycles-spiral.png)
+- **Esquerda, o estudo.** Quatro abas: **📘 Conceitos** (a teoria em cards, com o que *cai na prova*, um *macete* para lembrar e um *você sabia?* com a história por trás do assunto), **🎯 Questões** de múltipla escolha comentadas, **✍️ Dissertativas** com resposta-modelo e os pontos que não podem faltar, e **🃏 Flashcards**.
+- **Direita, o laboratório.** Uma janela com simuladores e jogos daquele tópico. As animações **começam sozinhas** e cada passo fica na tela o tempo necessário para ler a legenda (a barrinha clara mostra a contagem). O botão **▶** de cada conceito abre o laboratório exatamente no ponto que ilustra aquele assunto.
 
 Roteiro sugerido:
 
 1. Leia o card do conceito e marque **Entendi**.
-2. Clique em **▶** e veja o conceito em movimento; use ⏮ ▶ ⏭ para ir no seu ritmo.
+2. Clique em **▶** e veja o conceito em movimento; use ⏮ ⏸ ⏭ para pausar e ir no seu ritmo.
 3. Responda as questões. As alternativas são embaralhadas a cada tentativa, então não adianta decorar a letra.
 4. Escreva a resposta das dissertativas **antes** de abrir a resposta-modelo.
 5. Feche o tópico com os flashcards e, no fim, faça o simulado.
@@ -101,7 +158,7 @@ O menu segue as quatro unidades do conteúdo programático da disciplina:
 | **4** | 07 | 🧪 Testes, V&V e revisão de software | Verificação × validação, níveis e tipos de teste, caixa-preta e caixa-branca, complexidade ciclomática, inspeções |
 | **4** | 08 | 🚀 Implantação, manutenção e engenharia web | Estratégias de implantação, tipos de manutenção, leis de Lehman, reengenharia, atributos e projeto de WebApps |
 
-Em números: **64 conceitos**, **119 questões de múltipla escolha** (fáceis, médias e difíceis), **33 dissertativas** com resposta-modelo, **105 flashcards** e **221 situações** nos jogos de classificação.
+Em números: **64 conceitos** (cada um com uma curiosidade: a mariposa de Grace Hopper, a explosão do Ariane 5, o bloquinho de madeira que virou Palm Pilot...), **119 questões de múltipla escolha** (fáceis, médias e difíceis), **33 dissertativas** com resposta-modelo, **105 flashcards** e **221 situações** nos jogos de classificação.
 
 ---
 
@@ -118,39 +175,13 @@ Em números: **64 conceitos**, **119 questões de múltipla escolha** (fáceis, 
 | 07 | **Bancada de valor limite** na reta de classes de equivalência, **grafo de fluxo** com V(G) e caminhos independentes; jogos de níveis, tipos, caixa-preta × caixa-branca e V&V |
 | 08 | **Linha do tempo das estratégias de implantação**, tipos de manutenção, ciclos de evolução e de reengenharia, pirâmide de projeto de WebApps |
 
-### Simulador de Sprint
-
-![Simulador de Sprint](docs/screenshots/03-agile-sprint.png)
-
-### Questões comentadas e diagrama de casos de uso
-
-![Questões e casos de uso](docs/screenshots/04-requirements-questions.png)
-
-### Calculadora de pontos por função
-
-![Pontos por função](docs/screenshots/05-estimation-function-points.png)
-
-### Grafo de fluxo e complexidade ciclomática
-
-![Complexidade ciclomática](docs/screenshots/06-testing-cyclomatic.png)
-
-### Roda da qualidade (ISO/IEC 9126)
-
-![Roda da qualidade](docs/screenshots/07-quality-wheel.png)
-
 ---
 
 ## 📝 Simulado e flashcards
 
 **Simulado cronometrado** em três tamanhos: rápido (10 questões, 12 min), padrão (20 questões, 25 min) e completo (40 questões, 50 min). As questões são sorteadas de forma equilibrada entre os tópicos escolhidos e as alternativas mudam de ordem a cada tentativa. Não há correção durante a prova: no fim aparecem a nota de 0 a 10 (aprovação a partir de 6,0, como na UTFPR), o desempenho por tópico e o gabarito comentado, com os erros primeiro.
 
-![Simulado em andamento](docs/screenshots/08-exam-running.png)
-
-![Resultado do simulado](docs/screenshots/09-exam-result.png)
-
 **Flashcards** para revisão relâmpago: vire o card, diga se já sabe ou não e filtre para rever só o que falta.
-
-![Flashcards](docs/screenshots/10-flashcards.png)
 
 A **cola da matéria**, no menu, reúne as definições-chave dos oito tópicos em uma única janela.
 
@@ -171,10 +202,10 @@ src/
 │   ├── FlashcardScreen.ts      Treino de flashcards
 │   └── ProgressStore.ts        Progresso salvo no localStorage
 ├── components/             ← Peças reutilizadas pelos laboratórios
-│   ├── DiagramPlayer.ts        Diagramas animados com token (processos, espiral, casos de uso)
+│   ├── DiagramPlayer.ts        Diagramas animados com ponto luminoso (processos, espiral, casos de uso)
 │   ├── ClassifierGame.ts       Jogo de classificação por categorias
 │   ├── StackExplorer.ts        Pirâmides, pilhas e escadas clicáveis
-│   └── StepControls.ts         Controles ⏮ ▶ ⏭ no estilo depurador
+│   └── StepControls.ts         Controles ⏮ ▶ ⏭ com reprodução automática no ritmo de leitura
 ├── labs/                   ← Laboratórios específicos
 │   ├── LabFactory.ts           Monta o laboratório de cada tópico
 │   ├── SprintPanel.ts          Quadro Scrum + burndown
@@ -195,6 +226,24 @@ Para acrescentar uma questão, basta incluir um objeto no array `questions` do t
 
 ---
 
+## 🎞️ Animações fluidas, medidas
+
+As animações foram medidas, não só olhadas. O script `npm run perf` abre cada tela no Chrome simulando uma máquina **4 vezes mais lenta**, dispara a animação e registra quadros por segundo, quantas vezes a página foi repintada e o tempo gasto em pintura e rasterização (3 segundos por cenário).
+
+| Cenário | Repinturas antes | Repinturas depois | Pintura + rasterização antes | depois |
+|---|---|---|---|---|
+| Tópico parado na tela | 364 | **0** | 1474 ms | **0 ms** |
+| Diagrama tocando | 366 | **2** | 1460 ms | **24 ms** |
+| Grafo de fluxo percorrendo um caminho | 332 | **32** | 3601 ms | **144 ms** |
+| Simulado em andamento | 362 | **6** | 570 ms | **8 ms** |
+| Fundo animado do menu | 218 (37 fps) | **0** (53 fps) | 470 ms | **0 ms** |
+
+O que mudou: o ponto luminoso dos diagramas saiu de dentro do SVG e virou um elemento movido por `transform`; brilhos com `filter` e desfoques foram trocados por gradientes; barras de progresso e a cortina da linha do tempo passaram a usar `transform` em vez de `width` e `left`. A regra ficou protegida por teste: nenhuma animação infinita ou transição pode mexer em propriedade que force repintura ou novo cálculo de layout.
+
+Quem configurou o sistema operacional para **reduzir movimento** vê tudo sem animação e sem reprodução automática.
+
+---
+
 ## ✅ Testes
 
 ```bash
@@ -208,7 +257,9 @@ Os testes (Vitest) protegem principalmente o **conteúdo**, que é onde um erro 
 - os diagramas só referenciam nós e setas existentes e cabem na área de desenho;
 - nos grafos de fluxo, V(G) confere pelas três fórmulas e os caminhos básicos cobrem todas as arestas;
 - as fórmulas de pontos por função, COCOMO e três pontos batem com os exemplos resolvidos nas questões;
-- o simulado sorteia sem repetir, distribui por tópico e aprova exatamente a partir de 6,0.
+- o simulado sorteia sem repetir, distribui por tópico e aprova exatamente a partir de 6,0;
+- todo conceito tem a sua curiosidade;
+- as folhas de estilo não usam desfoque nem animam propriedades caras (ver a seção anterior).
 
 ---
 

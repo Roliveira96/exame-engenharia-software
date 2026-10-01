@@ -104,6 +104,7 @@ export class TopicScreen implements Screen {
           '<div class="lesson-body">' + lesson.body + '</div>' +
           (lesson.examTip === undefined ? '' : '<aside class="callout callout-exam"><b>' + T.topic.examTip + '</b><p>' + lesson.examTip + '</p></aside>') +
           (lesson.mnemonic === undefined ? '' : '<aside class="callout callout-memo"><b>' + T.topic.mnemonic + '</b><p>' + lesson.mnemonic + '</p></aside>') +
+          (lesson.funFact === undefined ? '' : '<aside class="callout callout-fun"><b>' + T.topic.funFact + '</b><p>' + lesson.funFact + '</p></aside>') +
           '<footer>' +
           (lesson.labCue === undefined || this.lab === null ? '<span></span>' :
             '<button class="cue-button" data-cue="' + lesson.labCue.cue + '">▶ ' + lesson.labCue.label + '</button>') +

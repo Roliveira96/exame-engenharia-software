@@ -82,8 +82,8 @@ export class ThreePointPanel implements LabPanel {
     query(root, '.three-point-formula').innerHTML =
       'E = (' + optimistic + ' + 4 × ' + likely + ' + ' + pessimistic + ') / 6 = <b>' + formatNumber(result.expected) + '</b> ' + this.config.unit +
       '<br>σ = (' + pessimistic + ' − ' + optimistic + ') / 6 = <b>' + formatNumber(result.deviation) + '</b>';
-    animateNumber(query(root, '.three-point-expected'), result.expected, 1);
-    animateNumber(query(root, '.three-point-deviation'), Math.abs(result.deviation), 1);
+    animateNumber(query(root, '.three-point-expected'), result.expected, 1, 0);
+    animateNumber(query(root, '.three-point-deviation'), Math.abs(result.deviation), 1, 0);
     query(root, '.three-point-insight').innerHTML = ordered ? this.config.insight(formatNumber(result.expected), String(likely)) : '';
     query(root, '.three-point-chart').innerHTML = ordered ? this.renderChart(result.expected) : '';
   }

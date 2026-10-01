@@ -1,5 +1,5 @@
 import type { LabPanel } from './Lab';
-import { StepControls } from '../components/StepControls';
+import { StepControls, readingTime } from '../components/StepControls';
 import type { StepControlLabels } from '../components/StepControls';
 import { prefersReducedMotion, query, queryAll } from '../app/html';
 
@@ -91,7 +91,7 @@ export class SprintPanel implements LabPanel {
     this.id = config.id;
     this.label = config.label;
     this.config = config;
-    this.controls = new StepControls(config.steps.length, controlLabels, (index: number) => this.showStep(index), 3600);
+    this.controls = new StepControls(config.steps.length, controlLabels, (index: number) => this.showStep(index));
   }
 
   public mount(root: HTMLElement): void {
@@ -120,7 +120,8 @@ export class SprintPanel implements LabPanel {
       '    <figure class="sprint-chart"><figcaption>' + config.burndownTitle + '</figcaption><div class="sprint-chart-svg"></div></figure></div>' +
       '</div>';
     this.controls.attach(root);
-    this.controls.reset(config.steps.length);
+    this.controls.reset(config.steps.length, (index: number) => readingTime(config.steps[index].caption));
+    this.controls.autoplay();
   }
 
   public unmount(): void {

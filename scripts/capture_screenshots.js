@@ -85,6 +85,44 @@ const SHOTS = [
     hash: '#/flashcards',
     setup: () => document.querySelector('.flip-card').click(),
   },
+  {
+    file: '11-concept-curiosity.png',
+    hash: '#/lifecycles',
+    setup: () => document.querySelectorAll('.callout-fun')[1].scrollIntoView({ block: 'end' }),
+    settle: 2600,
+  },
+  {
+    file: '12-written-question.png',
+    hash: '#/requirements',
+    setup: () => {
+      document.querySelector('[data-tab="open"]').click();
+      document.querySelector('.open-reveal').click();
+      document.querySelector('[data-panel="techniques"]').click();
+    },
+  },
+  {
+    file: '13-planning-poker.png',
+    hash: '#/estimation',
+    setup: () => {
+      document.querySelector('[data-panel="poker"]').click();
+      document.querySelector('[data-points="8"]').click();
+      document.querySelector('[data-action="reveal"]').click();
+    },
+  },
+  {
+    file: '14-deployment-strategies.png',
+    hash: '#/evolution',
+    setup: () => document.querySelector('[data-strategy="phased"]').click(),
+    settle: 3600,
+  },
+  {
+    file: '15-boundary-values.png',
+    hash: '#/testing',
+    setup: () => {
+      document.querySelector('[data-scenario="grade"]').click();
+      document.querySelector('[data-action="suggest"]').click();
+    },
+  },
 ];
 
 async function capture() {
@@ -99,11 +137,13 @@ async function capture() {
     console.log('Capturing ' + shot.file);
     const page = await browser.newPage();
     page.on('dialog', (dialog) => dialog.accept());
+    // Every shot starts from a clean progress so the pictures do not depend on the order they are taken.
+    await page.evaluateOnNewDocument(() => window.localStorage.clear());
     await page.goto(BASE_URL + shot.hash, { waitUntil: 'networkidle0' });
     await wait(1200);
     if (shot.setup) {
       await page.evaluate(shot.setup);
-      await wait(1800);
+      await wait(shot.settle ?? 1800);
     }
     await page.screenshot({ path: path.join(OUTPUT_DIR, shot.file) });
     await page.close();

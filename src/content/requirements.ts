@@ -13,6 +13,7 @@ export const requirements: Topic = {
   lessons: [
     {
       id: 'req-concept',
+      funFact: `Existe um cartum clássico da área: o cliente descreve um <b>balanço de árvore</b>, o analista entende outra coisa, o programador constrói uma terceira e o que o cliente precisava era só um <b>pneu pendurado em uma corda</b>.`,
       icon: '🎯',
       title: 'O que são requisitos e por que importam',
       body: `
@@ -27,6 +28,7 @@ export const requirements: Topic = {
     },
     {
       id: 'req-kinds',
+      funFact: `Em 1999, a NASA perdeu a sonda <b>Mars Climate Orbiter</b> (US$ 125 milhões) porque uma equipe enviava dados em <b>libras-força</b> e a outra esperava <b>newtons</b>. Uma unidade de medida que ninguém especificou.`,
       icon: '🧮',
       title: 'Funcionais, não funcionais e de domínio',
       body: `
@@ -43,6 +45,7 @@ export const requirements: Topic = {
     },
     {
       id: 'req-nfr',
+      funFact: `No lançamento do site <b>Healthcare.gov</b> (2013), que esperava dezenas de milhares de acessos simultâneos, relatórios divulgados depois mostraram que apenas <b>seis pessoas</b> conseguiram concluir o cadastro no primeiro dia. As funções existiam; os requisitos não funcionais é que falharam.`,
       icon: '🛡️',
       title: 'Classificação dos requisitos não funcionais',
       body: `
@@ -67,6 +70,7 @@ export const requirements: Topic = {
     },
     {
       id: 'req-process',
+      funFact: `O sistema automático de bagagens do <b>aeroporto de Denver</b> (anos 1990) é um caso clássico: requisitos que mudavam o tempo todo e complexidade subestimada <b>atrasaram a inauguração em 16 meses</b>.`,
       icon: '🔁',
       title: 'O processo de engenharia de requisitos',
       body: `
@@ -85,6 +89,7 @@ export const requirements: Topic = {
     },
     {
       id: 'req-techniques',
+      funFact: `Nos anos 1980, a antropóloga <b>Lucy Suchman</b> filmou pessoas tentando usar uma copiadora "inteligente" da Xerox. Até cientistas renomados se atrapalhavam. A empresa descobriu, observando, o que nenhuma entrevista tinha revelado.`,
       icon: '🎤',
       title: 'Técnicas de levantamento de requisitos',
       body: `
@@ -105,6 +110,7 @@ export const requirements: Topic = {
     },
     {
       id: 'req-usecases',
+      funFact: `Os casos de uso foram criados por <b>Ivar Jacobson</b> na <b>Ericsson</b>, nos anos 1980, para descrever centrais telefônicas. Anos depois, ele se juntou a Booch e Rumbaugh para criar a UML.`,
       icon: '🎭',
       title: 'Casos de uso',
       body: `
@@ -126,6 +132,7 @@ export const requirements: Topic = {
     },
     {
       id: 'req-document',
+      funFact: `Teste clássico de ambiguidade: "<b>o sistema deve enviar um alerta ao gerente quando o estoque estiver baixo</b>". Baixo quanto? Qual gerente? Alerta por e-mail, na tela? Uma frase, três interpretações.`,
       icon: '📄',
       title: 'Especificação: o documento de requisitos',
       body: `
@@ -145,6 +152,7 @@ export const requirements: Topic = {
     },
     {
       id: 'req-validation',
+      funFact: `Estimativas clássicas de Boehm indicam que corrigir um erro de requisito <b>depois da entrega</b> pode custar até <b>100 vezes mais</b> do que corrigi-lo ainda na especificação.`,
       icon: '🔍',
       title: 'Validação e gerenciamento de requisitos',
       body: `

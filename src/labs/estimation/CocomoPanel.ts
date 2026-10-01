@@ -90,15 +90,15 @@ export class CocomoPanel implements LabPanel {
     query(root, '.cocomo-formula').innerHTML =
       'E = ' + formatNumber(a) + ' × ' + this.kloc + '<sup>' + formatNumber(b, 2) + '</sup> = <b>' + formatNumber(result.effort) + '</b> ' + this.config.effortUnit + '<br>' +
       'D = ' + formatNumber(c) + ' × ' + formatNumber(result.effort) + '<sup>' + formatNumber(d, 2) + '</sup> = <b>' + formatNumber(result.duration) + '</b> ' + this.config.durationUnit;
-    animateNumber(query(root, '.cocomo-effort'), result.effort, 1);
-    animateNumber(query(root, '.cocomo-duration'), result.duration, 1);
-    animateNumber(query(root, '.cocomo-people'), result.people, 1);
+    animateNumber(query(root, '.cocomo-effort'), result.effort, 1, 0);
+    animateNumber(query(root, '.cocomo-duration'), result.duration, 1, 0);
+    animateNumber(query(root, '.cocomo-people'), result.people, 1, 0);
     const efforts: number[] = COCOMO_MODES.map((mode: CocomoMode) => cocomoBasic(this.kloc, mode).effort);
     const highest: number = Math.max(...efforts);
     COCOMO_MODES.forEach((mode: CocomoMode, index: number) => {
       const row: HTMLElement = query(root, '[data-bar="' + mode + '"]');
       row.classList.toggle('active', mode === this.mode);
-      query(row, 'i').style.width = (efforts[index] / highest) * 100 + '%';
+      query(row, 'i').style.transform = 'scaleX(' + efforts[index] / highest + ')';
       query(row, 'b').textContent = formatNumber(efforts[index], 0);
     });
   }

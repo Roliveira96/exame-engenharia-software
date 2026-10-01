@@ -74,6 +74,12 @@ describe.each(topics)('topic $id', (topic: Topic) => {
     expect(topic.cheatSheet.length).toBeGreaterThanOrEqual(8);
   });
 
+  it('tells a story or curiosity in every concept', () => {
+    for (const lesson of topic.lessons) {
+      expect(lesson.funFact?.trim() ?? '', lesson.id).not.toBe('');
+    }
+  });
+
   it('mixes easy, medium and hard questions', () => {
     for (const difficulty of ['easy', 'medium', 'hard']) {
       expect(topic.questions.filter((question: ChoiceQuestion) => question.difficulty === difficulty).length).toBeGreaterThanOrEqual(2);

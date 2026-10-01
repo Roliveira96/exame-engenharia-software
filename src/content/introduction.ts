@@ -13,6 +13,7 @@ export const introduction: Topic = {
   lessons: [
     {
       id: 'intro-software',
+      funFact: `O código do computador de bordo da <b>Apollo 11</b> foi impresso em papel, e a pilha das listagens ficava da altura de <b>Margaret Hamilton</b>, que liderou a equipe no MIT. Hoje, um carro de luxo carrega algo como <b>100 milhões de linhas de código</b>.`,
       icon: '💾',
       title: 'O que é software (e por que ele é diferente)',
       body: `
@@ -33,6 +34,7 @@ export const introduction: Topic = {
     },
     {
       id: 'intro-definition',
+      funFact: `Margaret Hamilton conta que começou a falar em "engenharia de software" durante o projeto Apollo para que o software fosse <b>levado tão a sério</b> quanto o hardware. Na época, os colegas achavam o termo engraçado.`,
       icon: '🏗️',
       title: 'O que é Engenharia de Software',
       body: `
@@ -50,6 +52,7 @@ export const introduction: Topic = {
     },
     {
       id: 'intro-layers',
+      funFact: `Grady Booch, um dos criadores da UML, resumiu o perigo de pular as camadas de baixo: "<b>a fool with a tool is still a fool</b>" (um tolo com uma ferramenta continua sendo um tolo).`,
       icon: '🧱',
       title: 'Uma tecnologia em camadas (Pressman)',
       body: `
@@ -66,6 +69,7 @@ export const introduction: Topic = {
     },
     {
       id: 'intro-activities',
+      funFact: `O relatório <b>CHAOS</b>, do Standish Group (1994), assustou a indústria: só cerca de <b>16%</b> dos projetos de software terminavam no prazo e no orçamento, e quase um terço era <b>cancelado</b> antes do fim.`,
       icon: '⚙️',
       title: 'As atividades fundamentais do processo',
       body: `
@@ -84,6 +88,7 @@ export const introduction: Topic = {
     },
     {
       id: 'intro-attributes',
+      funFact: `O <b>Therac-25</b>, uma máquina de radioterapia dos anos 1980, aplicou doses letais em pacientes por causa de uma condição de corrida no software. Os modelos anteriores tinham travas físicas de segurança; nessa versão, confiaram só no programa.`,
       icon: '⭐',
       title: 'Atributos de um bom software',
       body: `
@@ -101,6 +106,7 @@ export const introduction: Topic = {
     },
     {
       id: 'intro-myths',
+      funFact: `A frase mais citada de Fred Brooks, em <i>O Mítico Homem-Mês</i> (1975): "<b>gerar uma criança leva nove meses, não importa quantas mulheres sejam designadas para a tarefa</b>". Ele aprendeu isso gerenciando o OS/360, da IBM.`,
       icon: '🧙',
       title: 'Mitos do software',
       body: `
@@ -120,6 +126,7 @@ export const introduction: Topic = {
     },
     {
       id: 'intro-principles',
+      funFact: `<b>KISS</b> não nasceu na computação: é atribuído a <b>Kelly Johnson</b>, engenheiro-chefe da Lockheed, que exigia aviões que um mecânico comum pudesse consertar em campo com poucas ferramentas.`,
       icon: '📐',
       title: 'Princípios e responsabilidade profissional',
       body: `

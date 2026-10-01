@@ -13,6 +13,7 @@ export const agile: Topic = {
   lessons: [
     {
       id: 'agile-manifesto',
+      funFact: `O manifesto foi escrito em um fim de semana de fevereiro de 2001 em uma <b>estação de esqui</b> (Snowbird, Utah). Dezessete pessoas que discordavam em quase tudo conseguiram concordar em quatro frases.`,
       icon: '📜',
       title: 'Manifesto Ágil: os quatro valores',
       body: `
@@ -30,6 +31,7 @@ export const agile: Topic = {
     },
     {
       id: 'agile-principles',
+      funFact: `Ward Cunningham, um dos signatários, também inventou a <b>wiki</b> e cunhou a metáfora da <b>dívida técnica</b>: atalho no código é um empréstimo, e os juros são pagos em manutenção.`,
       icon: '🧭',
       title: 'Os doze princípios, resumidos',
       body: `
@@ -51,6 +53,7 @@ export const agile: Topic = {
     },
     {
       id: 'agile-scrum-roles',
+      funFact: `<b>Scrum</b> é uma jogada do <b>rúgbi</b>, em que o time avança unido para recuperar a bola. A comparação vem de um artigo de Takeuchi e Nonaka, de 1986, sobre como empresas japonesas desenvolviam produtos.`,
       icon: '👥',
       title: 'Scrum: pilares e papéis',
       body: `
@@ -66,6 +69,7 @@ export const agile: Topic = {
     },
     {
       id: 'agile-scrum-events',
+      funFact: `A Daily costuma ser feita <b>em pé</b> (por isso o apelido <i>stand-up meeting</i>) por um motivo simples: ninguém aguenta ficar muito tempo em pé, então a reunião acaba no horário.`,
       icon: '🗓️',
       title: 'Scrum: os eventos',
       body: `
@@ -84,6 +88,7 @@ export const agile: Topic = {
     },
     {
       id: 'agile-scrum-artifacts',
+      funFact: `A velha piada do Scrum: em um prato de ovos com bacon, a <b>galinha está envolvida</b>, mas o <b>porco está comprometido</b>. Os "porcos" eram o time; as "galinhas", quem só observa. A fábula saiu do guia oficial em 2011.`,
       icon: '📦',
       title: 'Scrum: os artefatos',
       body: `
@@ -103,6 +108,7 @@ export const agile: Topic = {
     },
     {
       id: 'agile-xp',
+      funFact: `O XP nasceu em 1996 no projeto <b>C3</b>, um sistema de folha de pagamento da <b>Chrysler</b> que estava naufragando. Kent Beck pegou as boas práticas que já conhecia e "girou todos os botões até o máximo", daí o <i>extreme</i>.`,
       icon: '🧗',
       title: 'Extreme Programming (XP)',
       body: `
@@ -128,6 +134,7 @@ export const agile: Topic = {
     },
     {
       id: 'agile-kanban',
+      funFact: `Taiichi Ohno, da <b>Toyota</b>, se inspirou nos <b>supermercados americanos</b>: a prateleira só é reabastecida quando o cliente retira o produto. É a origem do sistema puxado.`,
       icon: '🪧',
       title: 'Kanban, Lean e outros métodos ágeis',
       body: `
@@ -144,6 +151,7 @@ export const agile: Topic = {
     },
     {
       id: 'agile-stories',
+      funFact: `As histórias eram escritas em <b>cartões de papel</b> de propósito: no cartão cabe pouco texto, e isso obriga as pessoas a <b>conversar</b>.`,
       icon: '🗒️',
       title: 'Histórias de usuário',
       body: `
@@ -164,6 +172,7 @@ export const agile: Topic = {
     },
     {
       id: 'agile-versus',
+      funFact: `Na prática, muitas empresas vivem o que os críticos chamam de "<b>Water-Scrum-Fall</b>": planejamento e orçamento em cascata, desenvolvimento em Sprints e implantação em cascata de novo.`,
       icon: '⚖️',
       title: 'Ágil × dirigido a planos',
       body: `

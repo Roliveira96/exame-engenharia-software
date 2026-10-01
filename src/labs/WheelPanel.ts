@@ -1,5 +1,5 @@
 import type { LabPanel } from './Lab';
-import { query, queryAll } from '../app/html';
+import { prefersReducedMotion, query, queryAll } from '../app/html';
 
 export interface WheelCharacteristic {
   id: string;
@@ -33,6 +33,7 @@ const CENTER: number = SIZE / 2;
 const OUTER_RADIUS: number = 190;
 const INNER_RADIUS: number = 82;
 const GAP_DEGREES: number = 2.2;
+const AUTO_SELECT_DELAY_MS: number = 900;
 
 function polar(radius: number, degrees: number): { x: number; y: number } {
   const radians: number = ((degrees - 90) * Math.PI) / 180;
@@ -46,6 +47,7 @@ export class WheelPanel implements LabPanel {
   private readonly config: WheelConfig;
   private root: HTMLElement | null = null;
   private model: WheelModel;
+  private timer: number | null = null;
 
   constructor(config: WheelConfig) {
     this.id = config.id;
@@ -60,6 +62,8 @@ export class WheelPanel implements LabPanel {
   }
 
   public unmount(): void {
+    if (this.timer !== null) window.clearTimeout(this.timer);
+    this.timer = null;
     this.root = null;
   }
 
@@ -88,6 +92,13 @@ export class WheelPanel implements LabPanel {
     }
     for (const slice of queryAll<SVGGElement>(this.root, '.wheel-slice')) {
       slice.addEventListener('click', () => this.select(slice.dataset.slice ?? ''));
+    }
+    // Shows what a click does: once the wheel has assembled, the first slice opens by itself.
+    if (this.timer !== null) window.clearTimeout(this.timer);
+    if (!prefersReducedMotion()) {
+      this.timer = window.setTimeout(() => {
+        if (this.root !== null && this.root.querySelector('.wheel-slice.active') === null) this.select(this.model.characteristics[0].id);
+      }, AUTO_SELECT_DELAY_MS);
     }
   }
 

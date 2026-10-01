@@ -1,5 +1,5 @@
 import type { LabPanel } from '../Lab';
-import { query, queryAll } from '../../app/html';
+import { prefersReducedMotion, query, queryAll } from '../../app/html';
 import { cyclomaticComplexity } from './analysis';
 import type { Cyclomatic } from './analysis';
 
@@ -54,7 +54,7 @@ export interface CyclomaticConfig {
 }
 
 const RADIUS: number = 17;
-const WALK_INTERVAL_MS: number = 520;
+const WALK_INTERVAL_MS: number = 700;
 
 /** White-box workbench: code, its flow graph, V(G) three ways and the independent paths. */
 export class CyclomaticPanel implements LabPanel {
@@ -128,6 +128,7 @@ export class CyclomaticPanel implements LabPanel {
     for (const chip of queryAll(this.root, '[data-path]')) {
       chip.addEventListener('click', () => this.walk(Number(chip.dataset.path)));
     }
+    if (!prefersReducedMotion()) this.walk(0);
   }
 
   private renderGraph(): string {

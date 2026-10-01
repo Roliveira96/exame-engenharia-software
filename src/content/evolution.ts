@@ -13,6 +13,7 @@ export const evolution: Topic = {
   lessons: [
     {
       id: 'evo-deploy',
+      funFact: `Em 2018, o banco britânico <b>TSB</b> migrou todos os clientes para uma plataforma nova em um único fim de semana. Resultado: cerca de <b>1,9 milhão de clientes</b> ficaram sem acesso às contas, alguns por semanas.`,
       icon: '📦',
       title: 'Implantação de software',
       body: `
@@ -32,6 +33,7 @@ export const evolution: Topic = {
     },
     {
       id: 'evo-strategies',
+      funFact: `A implantação direta é chamada de <b>big bang</b> porque tudo acontece de uma vez. Quando funciona, ninguém lembra; quando falha, vira manchete, como no caso do banco TSB.`,
       icon: '🔀',
       title: 'Estratégias de implantação (conversão)',
       body: `
@@ -48,6 +50,7 @@ export const evolution: Topic = {
     },
     {
       id: 'evo-maintenance',
+      funFact: `O <b>bug do milênio</b> (Y2K) foi a maior manutenção da história: anos guardados com dois dígitos fariam 2000 virar 1900. O mundo gastou <b>centenas de bilhões de dólares</b> revisando sistemas, e por isso quase nada quebrou.`,
       icon: '🛠️',
       title: 'Manutenção: os quatro tipos',
       body: `
@@ -66,6 +69,7 @@ export const evolution: Topic = {
     },
     {
       id: 'evo-process',
+      funFact: `Linus Torvalds criou o <b>Git</b> em 2005, em poucos dias, depois que o Linux perdeu a licença da ferramenta de controle de versão que usava. O nome, segundo ele, é uma gíria britânica para "pessoa desagradável".`,
       icon: '🔁',
       title: 'Processo de manutenção e gerência de configuração',
       body: `
@@ -84,6 +88,7 @@ export const evolution: Topic = {
     },
     {
       id: 'evo-lehman',
+      funFact: `Lehman formulou as leis observando o crescimento do <b>OS/360</b>, da IBM: o mesmo sistema cujo desenvolvimento inspirou Brooks a escrever <i>O Mítico Homem-Mês</i>.`,
       icon: '📜',
       title: 'Leis de Lehman',
       body: `
@@ -103,6 +108,7 @@ export const evolution: Topic = {
     },
     {
       id: 'evo-reengineering',
+      funFact: `Em 2020, com a explosão de pedidos de seguro-desemprego na pandemia, estados americanos fizeram um apelo público por <b>programadores de COBOL</b>: os sistemas, com décadas de idade, não davam conta e pouca gente ainda sabia mantê-los.`,
       icon: '♻️',
       title: 'Sistemas legados, reengenharia e engenharia reversa',
       body: `
@@ -127,6 +133,7 @@ export const evolution: Topic = {
     },
     {
       id: 'evo-web',
+      funFact: `O <b>primeiro site da história</b> entrou no ar em 1991, criado por Tim Berners-Lee no CERN. O endereço info.cern.ch ainda funciona e mostra uma réplica daquela página.`,
       icon: '🌐',
       title: 'Engenharia de software para web',
       body: `
@@ -149,6 +156,7 @@ export const evolution: Topic = {
     },
     {
       id: 'evo-web-process',
+      funFact: `O lema antigo do Facebook era "<b>move fast and break things</b>" (ande rápido e quebre coisas). Em 2014, a empresa trocou por um bem menos empolgante: "ande rápido com infraestrutura estável".`,
       icon: '🧭',
       title: 'Processo, projeto e teste de WebApps',
       body: `

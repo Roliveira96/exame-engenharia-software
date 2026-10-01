@@ -13,6 +13,8 @@ export interface Lesson {
   examTip?: string;
   /** Short memory aid. */
   mnemonic?: string;
+  /** A story or curiosity that makes the concept stick. */
+  funFact?: string;
   /** Opens the lab panel that shows this concept in motion ("panel" or "panel:argument"). */
   labCue?: { label: string; cue: string };
 }

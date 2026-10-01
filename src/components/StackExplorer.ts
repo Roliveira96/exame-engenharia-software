@@ -1,5 +1,6 @@
 import type { LabPanel } from '../labs/Lab';
-import { query, queryAll } from '../app/html';
+import { prefersReducedMotion, query, queryAll } from '../app/html';
+import { readingTime } from './StepControls';
 
 export interface StackLayer {
   id: string;
@@ -31,8 +32,6 @@ export interface StackConfig {
   tourLabel: string;
   emptyHint: string;
 }
-
-const TOUR_INTERVAL_MS: number = 2400;
 
 /** Layered drawing (pyramid, ladder or stack) where each layer opens its explanation. */
 export class StackExplorer implements LabPanel {
@@ -104,6 +103,7 @@ export class StackExplorer implements LabPanel {
       });
     }
     query(this.root, '.stack-tour').addEventListener('click', () => this.startTour());
+    if (!prefersReducedMotion()) this.startTour();
   }
 
   private select(layerId: string): void {
@@ -125,22 +125,24 @@ export class StackExplorer implements LabPanel {
   private startTour(): void {
     this.stopTour();
     const order: StackLayer[] = [...this.set.layers].reverse();
-    let index: number = 0;
-    this.select(order[0].id);
-    this.timer = window.setInterval(() => {
-      index++;
-      if (index >= order.length) {
-        this.stopTour();
+    const visit = (index: number): void => {
+      this.select(order[index].id);
+      this.root?.querySelector('.stack-tour')?.classList.add('touring');
+      if (index + 1 >= order.length) {
+        this.timer = window.setTimeout(() => this.stopTour(), readingTime(order[index].detail));
         return;
       }
-      this.select(order[index].id);
-    }, TOUR_INTERVAL_MS);
+      // Each layer stays selected for as long as its explanation takes to read.
+      this.timer = window.setTimeout(() => visit(index + 1), readingTime(order[index].detail));
+    };
+    visit(0);
   }
 
   private stopTour(): void {
     if (this.timer !== null) {
-      window.clearInterval(this.timer);
+      window.clearTimeout(this.timer);
       this.timer = null;
     }
+    this.root?.querySelector('.stack-tour')?.classList.remove('touring');
   }
 }

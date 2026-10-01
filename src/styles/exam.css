@@ -81,12 +81,14 @@
 }
 
 .exam-clock b { font-family: var(--font-code); font-size: 17px; color: var(--accent); }
-.exam-clock.low { border-color: var(--red); animation: pulse-red 1s infinite; }
+.exam-clock.low { border-color: var(--red); animation: pulse-red 1s ease-in-out infinite; }
 .exam-clock.low b { color: var(--red); }
-@keyframes pulse-red { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--red) 20%, transparent); } }
+@keyframes pulse-red { 50% { transform: scale(1.07); } }
 
-.exam-time-track { height: 3px; background: var(--surface-3); flex-shrink: 0; }
-.exam-time-track i { display: block; height: 100%; background: linear-gradient(90deg, var(--red), var(--accent), var(--green)); transition: width 1s linear; }
+.exam-time-track { height: 3px; flex-shrink: 0; }
+.exam-time-track { background: linear-gradient(90deg, var(--red), var(--accent) 35%, var(--green)); position: relative; overflow: hidden; }
+/* The spent time is a dark cover that slides in with a transform: one cheap update per second. */
+.exam-time-track i { position: absolute; inset: 0; background: var(--surface-3); transform-origin: right; transform: scaleX(0); transition: transform 1s linear; }
 
 .exam-body { flex: 1; min-height: 0; overflow-y: auto; display: grid; grid-template-columns: 250px minmax(0, 760px); justify-content: center; gap: 24px; padding: 26px 24px 50px; align-items: start; }
 

@@ -125,6 +125,8 @@
 .callout-exam > b { color: var(--red); }
 .callout-memo { border-color: color-mix(in srgb, var(--purple) 40%, transparent); background: color-mix(in srgb, var(--purple) 8%, transparent); }
 .callout-memo > b { color: var(--purple); }
+.callout-fun { border-color: color-mix(in srgb, var(--teal) 45%, transparent); border-style: dashed; background: color-mix(in srgb, var(--teal) 8%, transparent); }
+.callout-fun > b { color: var(--teal); }
 
 .lesson > footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); flex-wrap: wrap; }
 

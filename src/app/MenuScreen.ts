@@ -43,7 +43,7 @@ export class MenuScreen implements Screen {
 
     root.innerHTML =
       '<div class="menu">' +
-      '  <div class="menu-backdrop" aria-hidden="true"><i></i><i></i><i></i>' + this.orbit() + '</div>' +
+      '  <div class="menu-backdrop" aria-hidden="true"><div class="menu-glow"></div>' + this.orbit() + '</div>' +
       '  <header class="menu-header">' +
       '    <div class="institution-box">' +
       '      <img src="/utfpr-logo.svg" alt="UTFPR" class="logo-utfpr" />' +
@@ -129,14 +129,12 @@ export class MenuScreen implements Screen {
     return T.menu.examBest(formatNumber(best));
   }
 
-  /** Decorative lifecycle orbit drawn behind the title. */
+  /** Decorative lifecycle orbit behind the title: rings that rotate as whole elements (no repaint). */
   private orbit(): string {
-    return '<svg class="menu-orbit" viewBox="0 0 600 600">' +
-      '<circle cx="300" cy="300" r="270" class="orbit-ring slow"></circle>' +
-      '<circle cx="300" cy="300" r="200" class="orbit-ring reverse"></circle>' +
-      '<circle cx="300" cy="300" r="130" class="orbit-ring"></circle>' +
-      '<g class="orbit-dots slow"><circle cx="300" cy="30" r="6"></circle><circle cx="570" cy="300" r="4"></circle><circle cx="300" cy="570" r="5"></circle></g>' +
-      '<g class="orbit-dots reverse"><circle cx="300" cy="100" r="5"></circle><circle cx="100" cy="300" r="4"></circle></g>' +
-      '</svg>';
+    return '<div class="menu-orbit">' +
+      '<span class="orbit-ring ring-large"><i></i><i></i><i></i></span>' +
+      '<span class="orbit-ring ring-medium"><i></i><i></i></span>' +
+      '<span class="orbit-ring ring-small"><i></i></span>' +
+      '</div>';
   }
 }

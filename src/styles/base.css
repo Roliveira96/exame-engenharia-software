@@ -178,16 +178,20 @@ button:disabled { opacity: 0.4; cursor: not-allowed; }
   overflow: hidden;
 }
 
+/* Bars grow with a transform, which the browser animates without recalculating the layout. */
 .progress-bar i {
   display: block;
   height: 100%;
-  width: calc(var(--ratio) * 100%);
+  width: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--topic-color, var(--accent)), var(--green));
-  transition: --ratio 0.7s var(--ease);
-  animation: ratio-grow 0.9s var(--ease);
+  transform: scaleX(var(--ratio));
+  transform-origin: left;
+  transition: transform 0.7s var(--ease);
+  animation: bar-grow 0.9s var(--ease);
 }
 
+@keyframes bar-grow { from { transform: scaleX(0); } }
 @keyframes ratio-grow { from { --ratio: 0; } }
 
 .score-ring {
@@ -223,8 +227,7 @@ button:disabled { opacity: 0.4; cursor: not-allowed; }
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(6, 7, 11, 0.75);
-  backdrop-filter: blur(4px);
+  background: rgba(6, 7, 11, 0.86);
   display: none;
   align-items: center;
   justify-content: center;
