@@ -10,6 +10,8 @@ import * as requirementsData from '../content/labs/requirementsLab';
 import * as estimationData from '../content/labs/estimationLab';
 import * as qualityData from '../content/labs/qualityLab';
 import * as testingData from '../content/labs/testingLab';
+import * as evolutionData from '../content/labs/evolutionLab';
+import { RolloutPanel } from './RolloutPanel';
 import { BoundaryPanel } from './testing/BoundaryPanel';
 import { CyclomaticPanel } from './testing/CyclomaticPanel';
 import { WheelPanel } from './WheelPanel';
@@ -75,6 +77,14 @@ export class LabFactory {
           new ClassifierGame(testingData.kindsGame, game),
           new ClassifierGame(testingData.boxGame, game),
           new ClassifierGame(testingData.verificationGame, game),
+        ]);
+      case 'evolution':
+        return new Lab(evolutionData.evolutionLabTitle, [
+          new RolloutPanel(evolutionData.rolloutTimeline),
+          new ClassifierGame(evolutionData.maintenanceGame, game),
+          new DiagramPlayer(evolutionData.changeDiagram, steps),
+          new StackExplorer(evolutionData.webPyramid),
+          new ClassifierGame(evolutionData.webAttributesGame, game),
         ]);
       default:
         return null;
