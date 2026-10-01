@@ -5,6 +5,50 @@ import { T } from '../uiText';
 
 export const introductionLabTitle: string = 'Laboratório · Fundamentos';
 
+export const historyDiagram: DiagramConfig = {
+  id: 'history',
+  label: '❓ Por que existe?',
+  title: 'Da programação artesanal à engenharia',
+  models: [
+    {
+      id: 'timeline',
+      name: 'Linha do tempo',
+      summary: 'A engenharia de software é a resposta a um problema concreto. Acompanhe como ele apareceu e o que veio depois.',
+      width: 640,
+      height: 270,
+      nodes: [
+        { id: 'craft', label: 'Anos 1950\nartesanato', x: 82, y: 60, width: 136, height: 52, color: 'var(--teal)' },
+        { id: 'growth', label: 'Anos 1960\nsistemas gigantes', x: 240, y: 60, width: 136, height: 52, color: 'var(--blue)' },
+        { id: 'crisis', label: 'Crise do\nsoftware', x: 398, y: 60, width: 136, height: 52, color: 'var(--red)' },
+        { id: 'nato', label: '1968\nconferência da OTAN', x: 556, y: 60, width: 150, height: 52, color: 'var(--yellow)' },
+        { id: 'process', label: 'Anos 1970\nmodelos de processo', x: 556, y: 200, width: 150, height: 52, color: 'var(--green)' },
+        { id: 'maturity', label: 'Anos 1980-90\nqualidade e medição', x: 396, y: 200, width: 144, height: 52, color: 'var(--purple)' },
+        { id: 'agile', label: '2001\nManifesto Ágil', x: 240, y: 200, width: 136, height: 52, color: 'var(--pink)' },
+        { id: 'today', label: 'Hoje\nsoftware em tudo', x: 82, y: 200, width: 136, height: 52, color: 'var(--indigo)' },
+      ],
+      edges: [
+        { from: 'craft', to: 'growth' },
+        { from: 'growth', to: 'crisis' },
+        { from: 'crisis', to: 'nato' },
+        { from: 'nato', to: 'process' },
+        { from: 'process', to: 'maturity' },
+        { from: 'maturity', to: 'agile' },
+        { from: 'agile', to: 'today' },
+      ],
+      steps: [
+        { nodes: ['craft'], caption: '<b>Anos 1950: artesanato.</b> Programas pequenos, feitos por uma pessoa para uma máquina. Quem escrevia era quem usava e consertava. Sem método, só talento.' },
+        { nodes: ['growth'], edges: [0], caption: '<b>Anos 1960: sistemas gigantes.</b> O hardware ficou potente e barato, e passou-se a pedir sistemas enormes: reservas aéreas, sistemas operacionais, defesa. Agora eram <b>centenas de pessoas</b> no mesmo software.' },
+        { nodes: ['crisis'], edges: [1], caption: '<b>Crise do software.</b> O jeito artesanal não escalou: <b>atrasos</b>, <b>custos estourados</b>, software <b>pouco confiável</b>, <b>impossível de manter</b> e que não atendia ao usuário. Muitos projetos foram cancelados.' },
+        { nodes: ['nato'], edges: [2], caption: '<b>1968: conferência da OTAN</b>, em Garmisch. Para enfrentar a crise, propõe-se construir software como se constroem pontes e aviões: com <b>engenharia</b>. O termo "engenharia de software" ganha o mundo.' },
+        { nodes: ['process'], edges: [3], caption: '<b>Anos 1970: modelos de processo.</b> Surgem o modelo <b>cascata</b>, a programação estruturada e as primeiras técnicas de análise e projeto. A ideia: um caminho definido e repetível.' },
+        { nodes: ['maturity'], edges: [4], caption: '<b>Anos 1980 e 1990: qualidade e medição.</b> Pontos por função, COCOMO, o modelo <b>espiral</b>, orientação a objetos, UML, normas ISO e os modelos de <b>maturidade</b> (CMM).' },
+        { nodes: ['agile'], edges: [5], caption: '<b>2001: Manifesto Ágil.</b> Reação aos processos pesados: entregar software funcionando com frequência, em colaboração com o cliente, aceitando mudanças.' },
+        { nodes: ['today'], edges: [6], caption: '<b>Hoje.</b> Há software em carros, bancos, hospitais e celulares. O problema original continua o mesmo, só que maior: entregar software de <b>qualidade, no prazo e no custo</b>. É para isso que a disciplina existe.' },
+      ],
+    },
+  ],
+};
+
 export const activitiesDiagram: DiagramConfig = {
   id: 'activities',
   label: '⚙️ Processo',

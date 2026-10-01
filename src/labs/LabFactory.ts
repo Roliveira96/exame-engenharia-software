@@ -29,6 +29,7 @@ export class LabFactory {
     switch (topicId) {
       case 'introduction':
         return new Lab(introductionData.introductionLabTitle, [
+          new DiagramPlayer(introductionData.historyDiagram, steps),
           new DiagramPlayer(introductionData.activitiesDiagram, steps),
           new StackExplorer(introductionData.layersStack),
           new ClassifierGame(introductionData.mythsGame, game),

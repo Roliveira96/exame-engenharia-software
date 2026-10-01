@@ -8,9 +8,34 @@ export const introduction: Topic = {
   subtitle: 'software · crise do software · camadas · processo · mitos',
   icon: '🧭',
   color: '--c-intro',
-  summary: 'O que é software, por que a Engenharia de Software nasceu e quais são as atividades que todo processo tem.',
-  tags: ['produto × processo', 'camadas de Pressman', '4 atividades', 'mitos'],
+  summary: 'Por que a Engenharia de Software existe, o que é software e quais são as atividades que todo processo tem.',
+  tags: ['crise do software', 'produto × processo', 'camadas de Pressman', '4 atividades', 'mitos'],
   lessons: [
+    {
+      id: 'intro-why',
+      funFact: `Em 1972, ao receber o prêmio Turing, <b>Dijkstra</b> resumiu a crise assim: enquanto não havia máquinas, programar não era problema; com alguns computadores fracos, virou um problema leve; e agora que temos computadores gigantescos, programar virou um <b>problema igualmente gigantesco</b>.`,
+      icon: '❓',
+      title: 'Por que a Engenharia de Software existe',
+      body: `
+        <p>Nos <b>anos 1950</b>, programar era <b>artesanato</b>. Os programas eram pequenos, escritos por uma pessoa, para uma máquina específica, e quem escrevia era também quem usava e consertava. Não havia método: havia talento e improviso.</p>
+        <p>Nos <b>anos 1960</b>, o hardware ficou muito mais potente e barato, e passou-se a pedir sistemas que nenhuma pessoa sozinha conseguiria construir: reservas de passagens aéreas, sistemas operacionais, controle de defesa. O sistema operacional <b>OS/360</b>, da IBM, consumiu milhares de pessoas-ano e ainda assim saiu atrasado e cheio de defeitos.</p>
+        <p>O jeito artesanal <b>não escalou</b>. O resultado ficou conhecido como <b>crise do software</b>:</p>
+        <table class="table">
+          <tr><th>Sintoma</th><th>Como aparecia</th></tr>
+          <tr><td><b>Prazo</b></td><td>projetos entregues com meses ou anos de atraso</td></tr>
+          <tr><td><b>Custo</b></td><td>orçamentos estourados várias vezes</td></tr>
+          <tr><td><b>Qualidade</b></td><td>software pouco confiável, que falhava em uso</td></tr>
+          <tr><td><b>Manutenção</b></td><td>código que só o autor entendia, impossível de alterar com segurança</td></tr>
+          <tr><td><b>Adequação</b></td><td>sistemas que não faziam o que o usuário precisava</td></tr>
+          <tr><td><b>Cancelamento</b></td><td>projetos abandonados depois de consumir muito dinheiro</td></tr>
+        </table>
+        <p><b>Por que software é tão difícil?</b> Fred Brooks aponta dificuldades que são da própria natureza do software: ele é <b>complexo</b> (não há duas partes iguais), <b>invisível</b> (não dá para ver se a "obra" está torta), <b>mutável</b> (todos acham que mudar é fácil) e precisa se <b>conformar</b> a regras arbitrárias do mundo real.</p>
+        <p>Grady Booch explica com uma analogia: qualquer pessoa constrói uma <b>casinha de cachorro</b> com tábuas e martelo, sem projeto. Para uma <b>casa</b>, já é preciso planta e equipe. Para um <b>arranha-céu</b>, ninguém começa sem engenharia, cálculo, cronograma e controle. O problema dos anos 1960 foi tentar erguer arranha-céus com o método da casinha de cachorro.</p>
+        <p>A resposta, proposta na conferência da <b>OTAN de 1968</b>, foi tratar a construção de software como as outras engenharias: com <b>processo definido, métodos, medição, gerência e controle de qualidade</b>. O objetivo da engenharia de software é produzir software <b>de qualidade, dentro do prazo e do custo</b>, de forma <b>repetível</b>, e não por sorte ou heroísmo.</p>`,
+      examTip: 'A engenharia de software <b>não</b> surgiu porque programar é difícil, e sim porque construir sistemas <b>grandes</b>, em <b>equipe</b>, com <b>prazo e custo</b>, e mantê-los por anos exige disciplina. Palavras-chave: <b>crise do software · 1968 · OTAN</b>.',
+      mnemonic: 'Sintomas da crise: <b>P-C-Q-M</b> (estouro de <b>P</b>razo, estouro de <b>C</b>usto, baixa <b>Q</b>ualidade, <b>M</b>anutenção difícil).',
+      labCue: { label: 'Ver essa história na linha do tempo', cue: 'history' },
+    },
     {
       id: 'intro-software',
       funFact: `O código do computador de bordo da <b>Apollo 11</b> foi impresso em papel, e a pilha das listagens ficava da altura de <b>Margaret Hamilton</b>, que liderou a equipe no MIT. Hoje, um carro de luxo carrega algo como <b>100 milhões de linhas de código</b>.`,
@@ -304,6 +329,30 @@ export const introduction: Topic = {
       ],
       explanation: 'Modelo de processo (cascata, evolucionário, espiral...) é uma abstração do processo real, apresentada sob uma perspectiva específica.',
     },
+    {
+      id: 'intro-q15',
+      difficulty: 'easy',
+      prompt: 'Qual das alternativas descreve os sintomas da chamada crise do software?',
+      answer: 'Projetos entregues com atraso e acima do orçamento, resultando em software pouco confiável e difícil de manter.',
+      distractors: [
+        'Falta de computadores potentes o bastante para executar os programas existentes.',
+        'Excesso de documentação, que tornava os projetos lentos demais.',
+        'Proibição do uso de linguagens de alto nível pelas empresas.',
+      ],
+      explanation: 'A crise foi de prazo, custo, qualidade e manutenção. O hardware, ao contrário, evoluía rápido: foi justamente isso que permitiu pedir sistemas grandes demais para o método artesanal.',
+    },
+    {
+      id: 'intro-q16',
+      difficulty: 'medium',
+      prompt: 'Por que a forma artesanal de programar dos anos 1950 deixou de ser suficiente na década seguinte?',
+      answer: 'Porque os sistemas se tornaram grandes e complexos demais para uma pessoa sem método, passando a exigir equipes, coordenação e manutenção por muitos anos.',
+      distractors: [
+        'Porque os programadores da época não tinham formação em matemática.',
+        'Porque o hardware ficou mais lento e mais caro a cada ano.',
+        'Porque os clientes passaram a exigir que todo software fosse gratuito.',
+      ],
+      explanation: 'O que mudou foi a escala. Na analogia de Booch, tentou-se construir arranha-céus com o método de quem faz uma casinha de cachorro.',
+    },
   ],
   openQuestions: [
     {
@@ -357,11 +406,13 @@ export const introduction: Topic = {
     { id: 'intro-f9', front: 'O software se desgasta?', back: 'Não. Ele se deteriora por causa das mudanças, que introduzem novos defeitos.' },
     { id: 'intro-f10', front: 'Quais são as três famílias de mitos do software?', back: 'Mitos gerenciais, mitos do cliente e mitos do profissional.' },
     { id: 'intro-f11', front: 'O que são atividades guarda-chuva?', back: 'Atividades que acompanham todo o projeto: gestão de riscos, garantia de qualidade, gerência de configuração, revisões, medição.' },
+    { id: 'intro-f13', front: 'Por que a engenharia de software surgiu?', back: 'Porque o desenvolvimento artesanal não escalou para sistemas grandes: os projetos atrasavam, estouravam o custo e geravam software ruim e difícil de manter (crise do software).' },
     { id: 'intro-f12', front: 'Processo × modelo de processo?', back: 'Processo: conjunto de atividades. Modelo: representação simplificada (abstrata) de um processo.' },
   ],
   cheatSheet: [
     { term: 'Software', definition: 'Programas + documentação associada + dados de configuração.' },
     { term: 'Engenharia de software', definition: 'Disciplina de engenharia que cobre todos os aspectos da produção de software, da especificação à manutenção.' },
+    { term: 'Por que existe', definition: 'Sistemas grandes demais para o método artesanal exigiram processo, métodos, medição e gerência.' },
     { term: 'Crise do software', definition: 'Atrasos, estouro de custo, baixa qualidade e manutenção difícil; motivou a conferência da OTAN de 1968.' },
     { term: 'Camadas (Pressman)', definition: 'Qualidade (base) → processo → métodos → ferramentas.' },
     { term: 'Atividades (Sommerville)', definition: 'Especificação, desenvolvimento, validação, evolução.' },

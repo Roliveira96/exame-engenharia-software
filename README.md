@@ -16,7 +16,7 @@
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
-![Testes](https://img.shields.io/badge/testes-267%20passando-success?logo=vitest&logoColor=white)
+![Testes](https://img.shields.io/badge/testes-271%20passando-success?logo=vitest&logoColor=white)
 ![Sem frameworks](https://img.shields.io/badge/sem-frameworks-3ddc97)
 ![UTFPR](https://img.shields.io/badge/UTFPR-Campus%20Guarapuava-F6C212?logoColor=231F20)
 
@@ -116,7 +116,7 @@ Abra **http://localhost:5174** (a porta é diferente da dos outros exames, para 
 | Comando | O que faz |
 |---|---|
 | `npm run dev` | Servidor de desenvolvimento, acessível também pelo IP da rede local |
-| `npm test` | Roda os 267 testes automatizados |
+| `npm test` | Roda os 271 testes automatizados |
 | `npm run perf` | Mede a fluidez de cada tela e animação (com o `npm run dev` rodando) |
 | `npm run build` | Checa os tipos com `tsc` e gera a versão final em `dist/` |
 | `npm run preview` | Serve a versão gerada em `dist/` |
@@ -149,7 +149,7 @@ O menu segue as quatro unidades do conteúdo programático da disciplina:
 
 | Unidade | # | Tópico | O que cobre |
 |---|---|---|---|
-| **1** | 01 | 🧭 Introdução à Engenharia de Software | Software e produto de software, crise do software, camadas de Pressman, atividades do processo, atributos de um bom software, mitos |
+| **1** | 01 | 🧭 Introdução à Engenharia de Software | Por que a engenharia de software existe (crise do software), software e produto de software, camadas de Pressman, atividades do processo, atributos de um bom software, mitos |
 | **1** | 02 | 🔄 Modelos de ciclo de vida | Cascata, prototipação, evolucionário e incremental, RAD, espiral, modelo V, RUP, como escolher |
 | **2** | 03 | 🏃 Metodologias ágeis | Manifesto Ágil, Scrum (papéis, eventos, artefatos), XP, Kanban e Lean, histórias de usuário |
 | **2** | 04 | 📋 Requisitos e técnicas de levantamento | RF × RNF × domínio, tipos de RNF, processo de requisitos, técnicas de elicitação, casos de uso, validação e gerenciamento |
@@ -158,7 +158,7 @@ O menu segue as quatro unidades do conteúdo programático da disciplina:
 | **4** | 07 | 🧪 Testes, V&V e revisão de software | Verificação × validação, níveis e tipos de teste, caixa-preta e caixa-branca, complexidade ciclomática, inspeções |
 | **4** | 08 | 🚀 Implantação, manutenção e engenharia web | Estratégias de implantação, tipos de manutenção, leis de Lehman, reengenharia, atributos e projeto de WebApps |
 
-Em números: **64 conceitos** (cada um com uma curiosidade: a mariposa de Grace Hopper, a explosão do Ariane 5, o bloquinho de madeira que virou Palm Pilot...), **119 questões de múltipla escolha** (fáceis, médias e difíceis), **33 dissertativas** com resposta-modelo, **105 flashcards** e **221 situações** nos jogos de classificação.
+Em números: **65 conceitos** (cada um com uma curiosidade: a mariposa de Grace Hopper, a explosão do Ariane 5, o bloquinho de madeira que virou Palm Pilot...), **121 questões de múltipla escolha** (fáceis, médias e difíceis), **33 dissertativas** com resposta-modelo, **106 flashcards** e **221 situações** nos jogos de classificação.
 
 ---
 
@@ -166,7 +166,7 @@ Em números: **64 conceitos** (cada um com uma curiosidade: a mariposa de Grace 
 
 | Tópico | O que há no laboratório |
 |---|---|
-| 01 | Processo de software animado (Sommerville e Pressman), camadas de Pressman, jogo "Mito ou fato?", atributos de qualidade |
+| 01 | **Linha do tempo** da programação artesanal à engenharia, processo de software animado (Sommerville e Pressman), camadas de Pressman, jogo "Mito ou fato?", atributos de qualidade |
 | 02 | **Simulador de modelos de processo**: cascata, prototipação, incremental, espiral, modelo V e RUP, passo a passo; jogo "Qual modelo?" |
 | 03 | **Simulador de Sprint**: quadro com cartões que andam, papéis em destaque a cada evento e burndown ao vivo; jogos de papéis, elementos e Scrum × XP × Kanban |
 | 04 | Jogos RF × RNF × domínio, tipos de RNF e escolha da técnica de levantamento; processo de requisitos e **diagrama de casos de uso** animado |
