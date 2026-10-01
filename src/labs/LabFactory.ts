@@ -5,6 +5,8 @@ import { StackExplorer } from '../components/StackExplorer';
 import { T } from '../content/uiText';
 import * as introductionData from '../content/labs/introductionLab';
 import * as lifecyclesData from '../content/labs/lifecyclesLab';
+import * as agileData from '../content/labs/agileLab';
+import { SprintPanel } from './SprintPanel';
 
 /** Builds the interactive lab that goes with each topic. */
 export class LabFactory {
@@ -23,6 +25,13 @@ export class LabFactory {
         return new Lab(lifecyclesData.lifecyclesLabTitle, [
           new DiagramPlayer(lifecyclesData.modelsDiagram, steps),
           new ClassifierGame(lifecyclesData.chooseModelGame, game),
+        ]);
+      case 'agile':
+        return new Lab(agileData.agileLabTitle, [
+          new SprintPanel(agileData.sprintSimulation, steps),
+          new ClassifierGame(agileData.rolesGame, game),
+          new ClassifierGame(agileData.elementsGame, game),
+          new ClassifierGame(agileData.methodsGame, game),
         ]);
       default:
         return null;

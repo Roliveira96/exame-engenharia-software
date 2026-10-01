@@ -254,3 +254,62 @@
   .classifier-choices, .classifier-choices.count-3, .classifier-choices.count-5, .classifier-choices.count-6 { grid-template-columns: minmax(0, 1fr); }
   .classifier-feedback { flex-direction: column; align-items: stretch; }
 }
+
+/* ===== Sprint simulator ===== */
+.sprint-events { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; font-size: 12px; }
+.sprint-events i { color: var(--text-soft); font-style: normal; }
+.sprint-event { padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-soft); font-weight: 600; transition: all 0.3s; }
+.sprint-event.active { background: var(--topic-color); border-color: var(--topic-color); color: var(--accent-ink); transform: scale(1.06); }
+
+.sprint-roles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 10px; }
+.sprint-role { padding: 7px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); opacity: 0.5; transition: all 0.35s; display: flex; flex-direction: column; }
+.sprint-role b { font-size: 13px; }
+.sprint-role small { font-size: 11.5px; color: var(--text-soft); line-height: 1.3; }
+.sprint-role.active { opacity: 1; border-color: var(--yellow); background: color-mix(in srgb, var(--yellow) 12%, var(--surface)); box-shadow: 0 0 18px -6px var(--yellow); }
+.sprint-role.active b { color: var(--yellow); }
+
+.sprint-board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.sprint-column { border-radius: 12px; border: 1px solid var(--border); background: #0c0e14; min-height: 208px; display: flex; flex-direction: column; }
+.sprint-column > header { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; padding: 8px 10px; border-bottom: 1px solid var(--border); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-soft); }
+.sprint-column > header b { font-family: var(--font-code); font-size: 10.5px; color: var(--topic-color); text-transform: none; letter-spacing: 0; white-space: nowrap; }
+.sprint-cards { display: flex; flex-direction: column; gap: 6px; padding: 8px; }
+
+.sprint-card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 7px 8px;
+  border-radius: 8px;
+  background: #fff3c4;
+  color: #2a2205;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.25;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+.sprint-card b { flex-shrink: 0; display: grid; place-items: center; min-width: 20px; height: 20px; border-radius: 50%; background: #2a2205; color: #fff3c4; font-size: 10.5px; }
+[data-column="doing"] .sprint-card { background: #bfe3ff; color: #062238; }
+[data-column="doing"] .sprint-card b { background: #062238; color: #bfe3ff; }
+[data-column="done"] .sprint-card { background: #b9f5d8; color: #052918; }
+[data-column="done"] .sprint-card b { background: #052918; color: #b9f5d8; }
+.sprint-card.blocked { background: #ffc9c9 !important; color: #3a0707 !important; animation: shake 0.5s; }
+.sprint-card em { position: absolute; top: -8px; right: -4px; font-style: normal; font-size: 9.5px; font-weight: 800; background: var(--red); color: #fff; padding: 1px 6px; border-radius: 999px; }
+
+.sprint-bottom { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 12px; align-items: stretch; }
+.sprint-chart { margin: 0; padding: 8px 10px; border-radius: 12px; border: 1px solid var(--border); background: #0c0e14; }
+.sprint-chart figcaption { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-soft); }
+.sprint-chart svg { display: block; width: 100%; height: auto; }
+.sprint-chart text { fill: var(--text-soft); font-size: 10px; font-family: var(--font-code); }
+.chart-axis { stroke: #3a4056; stroke-width: 1; }
+.chart-ideal { stroke: var(--text-soft); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.chart-real { fill: none; stroke: var(--topic-color); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.chart-dots circle { fill: var(--topic-color); }
+.chart-legend.real { fill: var(--topic-color); }
+
+@media (max-width: 620px) {
+  .sprint-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sprint-bottom, .sprint-roles { grid-template-columns: minmax(0, 1fr); }
+}
