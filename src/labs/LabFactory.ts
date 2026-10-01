@@ -9,6 +9,9 @@ import * as agileData from '../content/labs/agileLab';
 import * as requirementsData from '../content/labs/requirementsLab';
 import * as estimationData from '../content/labs/estimationLab';
 import * as qualityData from '../content/labs/qualityLab';
+import * as testingData from '../content/labs/testingLab';
+import { BoundaryPanel } from './testing/BoundaryPanel';
+import { CyclomaticPanel } from './testing/CyclomaticPanel';
 import { WheelPanel } from './WheelPanel';
 import { FunctionPointPanel } from './estimation/FunctionPointPanel';
 import { CocomoPanel } from './estimation/CocomoPanel';
@@ -63,6 +66,15 @@ export class LabFactory {
           new StackExplorer(qualityData.maturityStack),
           new ClassifierGame(qualityData.costGame, game),
           new ClassifierGame(qualityData.scopeGame, game),
+        ]);
+      case 'testing':
+        return new Lab(testingData.testingLabTitle, [
+          new BoundaryPanel(testingData.boundaryWorkbench),
+          new CyclomaticPanel(testingData.cyclomaticWorkbench),
+          new ClassifierGame(testingData.levelsGame, game),
+          new ClassifierGame(testingData.kindsGame, game),
+          new ClassifierGame(testingData.boxGame, game),
+          new ClassifierGame(testingData.verificationGame, game),
         ]);
       default:
         return null;

@@ -5,10 +5,11 @@ import { agile } from './agile';
 import { requirements } from './requirements';
 import { estimation } from './estimation';
 import { quality } from './quality';
+import { testing } from './testing';
 
 /** Every topic of the material, in the order of the official course plan. */
 export class TopicCatalog {
-  private readonly topics: Topic[] = [introduction, lifecycles, agile, requirements, estimation, quality];
+  private readonly topics: Topic[] = [introduction, lifecycles, agile, requirements, estimation, quality, testing];
 
   public list(): Topic[] {
     return this.topics;
