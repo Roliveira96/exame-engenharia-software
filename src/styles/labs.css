@@ -20,7 +20,7 @@
 .lab-dots i { width: 11px; height: 11px; border-radius: 50%; background: #3a3f52; }
 .lab-dots i:last-child { background: var(--topic-color); }
 
-.lab-tabs { display: flex; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--border); overflow-x: auto; flex-shrink: 0; }
+.lab-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
 
 .lab-tab {
   padding: 7px 13px;
@@ -463,4 +463,26 @@
 @media (max-width: 560px) {
   .mode-options, .stat-tiles.three { grid-template-columns: minmax(0, 1fr); }
   .calc-table .segmented { flex-direction: column; }
+}
+
+/* ===== Quality wheel ===== */
+.wheel-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: 16px; align-items: center; }
+.wheel svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.wheel-slice { cursor: pointer; transition: transform 0.35s var(--ease); animation: slice-in 0.5s var(--ease) both; animation-delay: calc(var(--i) * 0.07s); transform-origin: 210px 210px; }
+@keyframes slice-in { from { opacity: 0; transform: scale(0.6) rotate(-25deg); } }
+.wheel-slice path { fill: color-mix(in srgb, var(--slice-color) 24%, #14161d); stroke: var(--slice-color); stroke-width: 1.5; transition: fill 0.3s, filter 0.3s; }
+.wheel-slice text { fill: var(--text); font-size: 12.5px; font-weight: 700; font-family: var(--font); pointer-events: none; }
+.wheel-slice:hover path { fill: color-mix(in srgb, var(--slice-color) 40%, #14161d); }
+.wheel-slice.active { transform: translate(var(--push-x), var(--push-y)); }
+.wheel-slice.active path { fill: color-mix(in srgb, var(--slice-color) 62%, #14161d); filter: drop-shadow(0 0 12px var(--slice-color)); }
+.wheel-hub { fill: #0c0e14; stroke: var(--border); stroke-width: 1.5; }
+.wheel-hub-text { fill: var(--text-mid); font-size: 13px; font-weight: 800; letter-spacing: 0.08em; font-family: var(--font); }
+
+.wheel-subs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.wheel-subs li { padding: 4px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 600; color: var(--text); border: 1px solid color-mix(in srgb, var(--layer-color) 55%, transparent); background: color-mix(in srgb, var(--layer-color) 12%, transparent); animation: pop-in 0.35s var(--ease) both; animation-delay: calc(var(--i) * 0.05s); }
+
+@media (max-width: 1280px) {
+  .wheel-layout { grid-template-columns: minmax(0, 1fr); }
+  .wheel { max-width: 360px; margin: 0 auto; width: 100%; }
 }

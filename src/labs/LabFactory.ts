@@ -8,6 +8,8 @@ import * as lifecyclesData from '../content/labs/lifecyclesLab';
 import * as agileData from '../content/labs/agileLab';
 import * as requirementsData from '../content/labs/requirementsLab';
 import * as estimationData from '../content/labs/estimationLab';
+import * as qualityData from '../content/labs/qualityLab';
+import { WheelPanel } from './WheelPanel';
 import { FunctionPointPanel } from './estimation/FunctionPointPanel';
 import { CocomoPanel } from './estimation/CocomoPanel';
 import { ThreePointPanel } from './estimation/ThreePointPanel';
@@ -53,6 +55,14 @@ export class LabFactory {
           new ThreePointPanel(estimationData.threePointCalculator),
           new PokerPanel(estimationData.planningPoker),
           new ClassifierGame(estimationData.feasibilityGame, game),
+        ]);
+      case 'quality':
+        return new Lab(qualityData.qualityLabTitle, [
+          new WheelPanel(qualityData.qualityWheel),
+          new ClassifierGame(qualityData.characteristicGame, game),
+          new StackExplorer(qualityData.maturityStack),
+          new ClassifierGame(qualityData.costGame, game),
+          new ClassifierGame(qualityData.scopeGame, game),
         ]);
       default:
         return null;
