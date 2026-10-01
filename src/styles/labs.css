@@ -313,3 +313,5 @@
   .sprint-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sprint-bottom, .sprint-roles { grid-template-columns: minmax(0, 1fr); }
 }
+
+.edge-label { paint-order: stroke; stroke: #0c0e14; stroke-width: 5px; stroke-linejoin: round; }

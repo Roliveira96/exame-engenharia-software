@@ -2,10 +2,11 @@ import type { Topic } from './Topic';
 import { introduction } from './introduction';
 import { lifecycles } from './lifecycles';
 import { agile } from './agile';
+import { requirements } from './requirements';
 
 /** Every topic of the material, in the order of the official course plan. */
 export class TopicCatalog {
-  private readonly topics: Topic[] = [introduction, lifecycles, agile];
+  private readonly topics: Topic[] = [introduction, lifecycles, agile, requirements];
 
   public list(): Topic[] {
     return this.topics;

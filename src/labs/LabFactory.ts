@@ -6,6 +6,7 @@ import { T } from '../content/uiText';
 import * as introductionData from '../content/labs/introductionLab';
 import * as lifecyclesData from '../content/labs/lifecyclesLab';
 import * as agileData from '../content/labs/agileLab';
+import * as requirementsData from '../content/labs/requirementsLab';
 import { SprintPanel } from './SprintPanel';
 
 /** Builds the interactive lab that goes with each topic. */
@@ -32,6 +33,13 @@ export class LabFactory {
           new ClassifierGame(agileData.rolesGame, game),
           new ClassifierGame(agileData.elementsGame, game),
           new ClassifierGame(agileData.methodsGame, game),
+        ]);
+      case 'requirements':
+        return new Lab(requirementsData.requirementsLabTitle, [
+          new ClassifierGame(requirementsData.kindsGame, game),
+          new ClassifierGame(requirementsData.nfrGame, game),
+          new ClassifierGame(requirementsData.techniquesGame, game),
+          new DiagramPlayer(requirementsData.requirementsDiagram, steps),
         ]);
       default:
         return null;
