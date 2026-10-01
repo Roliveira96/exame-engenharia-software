@@ -4,6 +4,7 @@ import { DiagramPlayer } from '../components/DiagramPlayer';
 import { StackExplorer } from '../components/StackExplorer';
 import { T } from '../content/uiText';
 import * as introductionData from '../content/labs/introductionLab';
+import * as lifecyclesData from '../content/labs/lifecyclesLab';
 
 /** Builds the interactive lab that goes with each topic. */
 export class LabFactory {
@@ -17,6 +18,11 @@ export class LabFactory {
           new StackExplorer(introductionData.layersStack),
           new ClassifierGame(introductionData.mythsGame, game),
           new ClassifierGame(introductionData.attributesGame, game),
+        ]);
+      case 'lifecycles':
+        return new Lab(lifecyclesData.lifecyclesLabTitle, [
+          new DiagramPlayer(lifecyclesData.modelsDiagram, steps),
+          new ClassifierGame(lifecyclesData.chooseModelGame, game),
         ]);
       default:
         return null;
