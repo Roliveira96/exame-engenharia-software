@@ -587,3 +587,5 @@
   .rollout-row, .rollout-axis { grid-template-columns: 84px minmax(0, 1fr); }
   .rollout-curtain { left: 94px; }
 }
+
+.calculator, .boundary-tests { overflow-x: auto; }

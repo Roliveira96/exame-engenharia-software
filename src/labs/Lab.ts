@@ -40,6 +40,10 @@ export class Lab {
     this.show(this.panels[0].id);
   }
 
+  public panelIds(): string[] {
+    return this.panels.map((panel: LabPanel) => panel.id);
+  }
+
   public unmount(): void {
     this.current?.unmount();
     this.current = null;
